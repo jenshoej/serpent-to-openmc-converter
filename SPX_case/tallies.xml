@@ -1,0 +1,74 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<tallies>
+  <!--xy_power_mesh-->
+  <mesh id="1" name="xy_power_mesh">
+    <dimension>20 20 1</dimension>
+    <lower_left>-300.0 -300.0 -300.0</lower_left>
+    <upper_right>300.0 300.0 300.0</upper_right>
+  </mesh>
+  <!--xz_power_mesh-->
+  <mesh id="2" name="xz_power_mesh">
+    <dimension>20 1 20</dimension>
+    <lower_left>-300.0 -300.0 -300.0</lower_left>
+    <upper_right>300.0 300.0 300.0</upper_right>
+  </mesh>
+  <filter id="1" type="mesh">
+    <bins>1</bins>
+  </filter>
+  <filter id="2" type="mesh">
+    <bins>2</bins>
+  </filter>
+  <filter id="3" type="cell">
+    <bins>9</bins>
+  </filter>
+  <filter id="4" type="cell">
+    <bins>71</bins>
+  </filter>
+  <filter id="5" type="cell">
+    <bins>163</bins>
+  </filter>
+  <filter id="6" type="cell">
+    <bins>259</bins>
+  </filter>
+  <filter id="7" type="cell">
+    <bins>350</bins>
+  </filter>
+  <filter id="8" type="cell">
+    <bins>402</bins>
+  </filter>
+  <tally id="1" name="global_power">
+    <scores>kappa-fission fission</scores>
+  </tally>
+  <tally id="2" name="xy_power_map">
+    <filters>1</filters>
+    <scores>kappa-fission</scores>
+  </tally>
+  <tally id="3" name="xz_power_map">
+    <filters>2</filters>
+    <scores>kappa-fission</scores>
+  </tally>
+  <tally id="4" name="cell_power_9">
+    <filters>3</filters>
+    <scores>kappa-fission fission</scores>
+  </tally>
+  <tally id="5" name="cell_power_71">
+    <filters>4</filters>
+    <scores>kappa-fission fission</scores>
+  </tally>
+  <tally id="6" name="cell_power_163">
+    <filters>5</filters>
+    <scores>kappa-fission fission</scores>
+  </tally>
+  <tally id="7" name="cell_power_259">
+    <filters>6</filters>
+    <scores>kappa-fission fission</scores>
+  </tally>
+  <tally id="8" name="cell_power_350">
+    <filters>7</filters>
+    <scores>kappa-fission fission</scores>
+  </tally>
+  <tally id="9" name="cell_power_402">
+    <filters>8</filters>
+    <scores>kappa-fission fission</scores>
+  </tally>
+</tallies>

@@ -1,0 +1,1145 @@
+<?xml version='1.0' encoding='utf-8'?>
+<materials>
+  <material id="1" name="MAT_01I01" depletable="true" temperature="673.0">
+    <density units="sum"/>
+    <nuclide name="U235" ao="5.89977e-05"/>
+    <nuclide name="U238" ao="0.0232427"/>
+    <nuclide name="O16" ao="0.0461374"/>
+  </material>
+  <material id="2" name="MAT_02I01" depletable="true" temperature="673.0">
+    <density units="sum"/>
+    <nuclide name="U235" ao="5.89977e-05"/>
+    <nuclide name="U238" ao="0.0232427"/>
+    <nuclide name="O16" ao="0.0461374"/>
+  </material>
+  <material id="3" name="MAT_03I01" depletable="true" temperature="673.0">
+    <density units="sum"/>
+    <nuclide name="U235" ao="5.89977e-05"/>
+    <nuclide name="U238" ao="0.0232427"/>
+    <nuclide name="O16" ao="0.0461374"/>
+  </material>
+  <material id="4" name="MAT_04I01" depletable="true" temperature="673.0">
+    <density units="sum"/>
+    <nuclide name="U235" ao="0.000100885"/>
+    <nuclide name="U238" ao="0.0198227"/>
+    <nuclide name="Pu238" ao="1.7765e-05"/>
+    <nuclide name="Pu239" ao="0.00245032"/>
+    <nuclide name="Pu240" ao="0.000730575"/>
+    <nuclide name="Pu241" ao="0.000196417"/>
+    <nuclide name="Pu242" ao="6.81704e-05"/>
+    <nuclide name="Am241" ao="4.80731e-05"/>
+    <nuclide name="O16" ao="0.046401"/>
+  </material>
+  <material id="5" name="MAT_05I01" depletable="true" temperature="673.0">
+    <density units="sum"/>
+    <nuclide name="U235" ao="0.000100885"/>
+    <nuclide name="U238" ao="0.0198227"/>
+    <nuclide name="Pu238" ao="1.7765e-05"/>
+    <nuclide name="Pu239" ao="0.00245032"/>
+    <nuclide name="Pu240" ao="0.000730575"/>
+    <nuclide name="Pu241" ao="0.000196417"/>
+    <nuclide name="Pu242" ao="6.81704e-05"/>
+    <nuclide name="Am241" ao="4.80731e-05"/>
+    <nuclide name="O16" ao="0.046401"/>
+  </material>
+  <material id="6" name="MAT_06I01" depletable="true" temperature="673.0">
+    <density units="sum"/>
+    <nuclide name="U235" ao="0.000100885"/>
+    <nuclide name="U238" ao="0.0198227"/>
+    <nuclide name="Pu238" ao="1.7765e-05"/>
+    <nuclide name="Pu239" ao="0.00245032"/>
+    <nuclide name="Pu240" ao="0.000730575"/>
+    <nuclide name="Pu241" ao="0.000196417"/>
+    <nuclide name="Pu242" ao="6.81704e-05"/>
+    <nuclide name="Am241" ao="4.80731e-05"/>
+    <nuclide name="O16" ao="0.046401"/>
+  </material>
+  <material id="7" name="MAT_07I01" depletable="true" temperature="673.0">
+    <density units="sum"/>
+    <nuclide name="U235" ao="0.000100885"/>
+    <nuclide name="U238" ao="0.0198227"/>
+    <nuclide name="Pu238" ao="1.7765e-05"/>
+    <nuclide name="Pu239" ao="0.00245032"/>
+    <nuclide name="Pu240" ao="0.000730575"/>
+    <nuclide name="Pu241" ao="0.000196417"/>
+    <nuclide name="Pu242" ao="6.81704e-05"/>
+    <nuclide name="Am241" ao="4.80731e-05"/>
+    <nuclide name="O16" ao="0.046401"/>
+  </material>
+  <material id="8" name="MAT_08I01" depletable="true" temperature="673.0">
+    <density units="sum"/>
+    <nuclide name="U235" ao="0.000100885"/>
+    <nuclide name="U238" ao="0.0198227"/>
+    <nuclide name="Pu238" ao="1.7765e-05"/>
+    <nuclide name="Pu239" ao="0.00245032"/>
+    <nuclide name="Pu240" ao="0.000730575"/>
+    <nuclide name="Pu241" ao="0.000196417"/>
+    <nuclide name="Pu242" ao="6.81704e-05"/>
+    <nuclide name="Am241" ao="4.80731e-05"/>
+    <nuclide name="O16" ao="0.046401"/>
+  </material>
+  <material id="9" name="MAT_09I01" depletable="true" temperature="673.0">
+    <density units="sum"/>
+    <nuclide name="U235" ao="0.000100885"/>
+    <nuclide name="U238" ao="0.0198227"/>
+    <nuclide name="Pu238" ao="1.7765e-05"/>
+    <nuclide name="Pu239" ao="0.00245032"/>
+    <nuclide name="Pu240" ao="0.000730575"/>
+    <nuclide name="Pu241" ao="0.000196417"/>
+    <nuclide name="Pu242" ao="6.81704e-05"/>
+    <nuclide name="Am241" ao="4.80731e-05"/>
+    <nuclide name="O16" ao="0.046401"/>
+  </material>
+  <material id="10" name="MAT_10I01" depletable="true" temperature="673.0">
+    <density units="sum"/>
+    <nuclide name="U235" ao="0.000100885"/>
+    <nuclide name="U238" ao="0.0198227"/>
+    <nuclide name="Pu238" ao="1.7765e-05"/>
+    <nuclide name="Pu239" ao="0.00245032"/>
+    <nuclide name="Pu240" ao="0.000730575"/>
+    <nuclide name="Pu241" ao="0.000196417"/>
+    <nuclide name="Pu242" ao="6.81704e-05"/>
+    <nuclide name="Am241" ao="4.80731e-05"/>
+    <nuclide name="O16" ao="0.046401"/>
+  </material>
+  <material id="11" name="MAT_11I01" depletable="true" temperature="673.0">
+    <density units="sum"/>
+    <nuclide name="U235" ao="0.000100885"/>
+    <nuclide name="U238" ao="0.0198227"/>
+    <nuclide name="Pu238" ao="1.7765e-05"/>
+    <nuclide name="Pu239" ao="0.00245032"/>
+    <nuclide name="Pu240" ao="0.000730575"/>
+    <nuclide name="Pu241" ao="0.000196417"/>
+    <nuclide name="Pu242" ao="6.81704e-05"/>
+    <nuclide name="Am241" ao="4.80731e-05"/>
+    <nuclide name="O16" ao="0.046401"/>
+  </material>
+  <material id="12" name="MAT_12I01" depletable="true" temperature="673.0">
+    <density units="sum"/>
+    <nuclide name="U235" ao="0.000100885"/>
+    <nuclide name="U238" ao="0.0198227"/>
+    <nuclide name="Pu238" ao="1.7765e-05"/>
+    <nuclide name="Pu239" ao="0.00245032"/>
+    <nuclide name="Pu240" ao="0.000730575"/>
+    <nuclide name="Pu241" ao="0.000196417"/>
+    <nuclide name="Pu242" ao="6.81704e-05"/>
+    <nuclide name="Am241" ao="4.80731e-05"/>
+    <nuclide name="O16" ao="0.046401"/>
+  </material>
+  <material id="13" name="MAT_13I01" depletable="true" temperature="673.0">
+    <density units="sum"/>
+    <nuclide name="U235" ao="0.000100885"/>
+    <nuclide name="U238" ao="0.0198227"/>
+    <nuclide name="Pu238" ao="1.7765e-05"/>
+    <nuclide name="Pu239" ao="0.00245032"/>
+    <nuclide name="Pu240" ao="0.000730575"/>
+    <nuclide name="Pu241" ao="0.000196417"/>
+    <nuclide name="Pu242" ao="6.81704e-05"/>
+    <nuclide name="Am241" ao="4.80731e-05"/>
+    <nuclide name="O16" ao="0.046401"/>
+  </material>
+  <material id="14" name="MAT_14I01" depletable="true" temperature="673.0">
+    <density units="sum"/>
+    <nuclide name="U235" ao="5.89977e-05"/>
+    <nuclide name="U238" ao="0.0232427"/>
+    <nuclide name="O16" ao="0.0461374"/>
+  </material>
+  <material id="15" name="MAT_15I01" depletable="true" temperature="673.0">
+    <density units="sum"/>
+    <nuclide name="U235" ao="5.89977e-05"/>
+    <nuclide name="U238" ao="0.0232427"/>
+    <nuclide name="O16" ao="0.0461374"/>
+  </material>
+  <material id="16" name="MAT_16I01" depletable="true" temperature="673.0">
+    <density units="sum"/>
+    <nuclide name="U235" ao="5.89977e-05"/>
+    <nuclide name="U238" ao="0.0232427"/>
+    <nuclide name="O16" ao="0.0461374"/>
+  </material>
+  <material id="17" name="MAT_01I02" depletable="true" temperature="673.0">
+    <density units="sum"/>
+    <nuclide name="U235" ao="5.89977e-05"/>
+    <nuclide name="U238" ao="0.0232427"/>
+    <nuclide name="O16" ao="0.0461374"/>
+  </material>
+  <material id="18" name="MAT_02I02" depletable="true" temperature="673.0">
+    <density units="sum"/>
+    <nuclide name="U235" ao="5.89977e-05"/>
+    <nuclide name="U238" ao="0.0232427"/>
+    <nuclide name="O16" ao="0.0461374"/>
+  </material>
+  <material id="19" name="MAT_03I02" depletable="true" temperature="673.0">
+    <density units="sum"/>
+    <nuclide name="U235" ao="5.89977e-05"/>
+    <nuclide name="U238" ao="0.0232427"/>
+    <nuclide name="O16" ao="0.0461374"/>
+  </material>
+  <material id="20" name="MAT_04I02" depletable="true" temperature="673.0">
+    <density units="sum"/>
+    <nuclide name="U235" ao="0.000100885"/>
+    <nuclide name="U238" ao="0.0198227"/>
+    <nuclide name="Pu238" ao="1.7765e-05"/>
+    <nuclide name="Pu239" ao="0.00245032"/>
+    <nuclide name="Pu240" ao="0.000730575"/>
+    <nuclide name="Pu241" ao="0.000196417"/>
+    <nuclide name="Pu242" ao="6.81704e-05"/>
+    <nuclide name="Am241" ao="4.80731e-05"/>
+    <nuclide name="O16" ao="0.046401"/>
+  </material>
+  <material id="21" name="MAT_05I02" depletable="true" temperature="673.0">
+    <density units="sum"/>
+    <nuclide name="U235" ao="0.000100885"/>
+    <nuclide name="U238" ao="0.0198227"/>
+    <nuclide name="Pu238" ao="1.7765e-05"/>
+    <nuclide name="Pu239" ao="0.00245032"/>
+    <nuclide name="Pu240" ao="0.000730575"/>
+    <nuclide name="Pu241" ao="0.000196417"/>
+    <nuclide name="Pu242" ao="6.81704e-05"/>
+    <nuclide name="Am241" ao="4.80731e-05"/>
+    <nuclide name="O16" ao="0.046401"/>
+  </material>
+  <material id="22" name="MAT_06I02" depletable="true" temperature="673.0">
+    <density units="sum"/>
+    <nuclide name="U235" ao="0.000100885"/>
+    <nuclide name="U238" ao="0.0198227"/>
+    <nuclide name="Pu238" ao="1.7765e-05"/>
+    <nuclide name="Pu239" ao="0.00245032"/>
+    <nuclide name="Pu240" ao="0.000730575"/>
+    <nuclide name="Pu241" ao="0.000196417"/>
+    <nuclide name="Pu242" ao="6.81704e-05"/>
+    <nuclide name="Am241" ao="4.80731e-05"/>
+    <nuclide name="O16" ao="0.046401"/>
+  </material>
+  <material id="23" name="MAT_07I02" depletable="true" temperature="673.0">
+    <density units="sum"/>
+    <nuclide name="U235" ao="0.000100885"/>
+    <nuclide name="U238" ao="0.0198227"/>
+    <nuclide name="Pu238" ao="1.7765e-05"/>
+    <nuclide name="Pu239" ao="0.00245032"/>
+    <nuclide name="Pu240" ao="0.000730575"/>
+    <nuclide name="Pu241" ao="0.000196417"/>
+    <nuclide name="Pu242" ao="6.81704e-05"/>
+    <nuclide name="Am241" ao="4.80731e-05"/>
+    <nuclide name="O16" ao="0.046401"/>
+  </material>
+  <material id="24" name="MAT_08I02" depletable="true" temperature="673.0">
+    <density units="sum"/>
+    <nuclide name="U235" ao="0.000100885"/>
+    <nuclide name="U238" ao="0.0198227"/>
+    <nuclide name="Pu238" ao="1.7765e-05"/>
+    <nuclide name="Pu239" ao="0.00245032"/>
+    <nuclide name="Pu240" ao="0.000730575"/>
+    <nuclide name="Pu241" ao="0.000196417"/>
+    <nuclide name="Pu242" ao="6.81704e-05"/>
+    <nuclide name="Am241" ao="4.80731e-05"/>
+    <nuclide name="O16" ao="0.046401"/>
+  </material>
+  <material id="25" name="MAT_09I02" depletable="true" temperature="673.0">
+    <density units="sum"/>
+    <nuclide name="U235" ao="0.000100885"/>
+    <nuclide name="U238" ao="0.0198227"/>
+    <nuclide name="Pu238" ao="1.7765e-05"/>
+    <nuclide name="Pu239" ao="0.00245032"/>
+    <nuclide name="Pu240" ao="0.000730575"/>
+    <nuclide name="Pu241" ao="0.000196417"/>
+    <nuclide name="Pu242" ao="6.81704e-05"/>
+    <nuclide name="Am241" ao="4.80731e-05"/>
+    <nuclide name="O16" ao="0.046401"/>
+  </material>
+  <material id="26" name="MAT_10I02" depletable="true" temperature="673.0">
+    <density units="sum"/>
+    <nuclide name="U235" ao="0.000100885"/>
+    <nuclide name="U238" ao="0.0198227"/>
+    <nuclide name="Pu238" ao="1.7765e-05"/>
+    <nuclide name="Pu239" ao="0.00245032"/>
+    <nuclide name="Pu240" ao="0.000730575"/>
+    <nuclide name="Pu241" ao="0.000196417"/>
+    <nuclide name="Pu242" ao="6.81704e-05"/>
+    <nuclide name="Am241" ao="4.80731e-05"/>
+    <nuclide name="O16" ao="0.046401"/>
+  </material>
+  <material id="27" name="MAT_11I02" depletable="true" temperature="673.0">
+    <density units="sum"/>
+    <nuclide name="U235" ao="0.000100885"/>
+    <nuclide name="U238" ao="0.0198227"/>
+    <nuclide name="Pu238" ao="1.7765e-05"/>
+    <nuclide name="Pu239" ao="0.00245032"/>
+    <nuclide name="Pu240" ao="0.000730575"/>
+    <nuclide name="Pu241" ao="0.000196417"/>
+    <nuclide name="Pu242" ao="6.81704e-05"/>
+    <nuclide name="Am241" ao="4.80731e-05"/>
+    <nuclide name="O16" ao="0.046401"/>
+  </material>
+  <material id="28" name="MAT_12I02" depletable="true" temperature="673.0">
+    <density units="sum"/>
+    <nuclide name="U235" ao="0.000100885"/>
+    <nuclide name="U238" ao="0.0198227"/>
+    <nuclide name="Pu238" ao="1.7765e-05"/>
+    <nuclide name="Pu239" ao="0.00245032"/>
+    <nuclide name="Pu240" ao="0.000730575"/>
+    <nuclide name="Pu241" ao="0.000196417"/>
+    <nuclide name="Pu242" ao="6.81704e-05"/>
+    <nuclide name="Am241" ao="4.80731e-05"/>
+    <nuclide name="O16" ao="0.046401"/>
+  </material>
+  <material id="29" name="MAT_13I02" depletable="true" temperature="673.0">
+    <density units="sum"/>
+    <nuclide name="U235" ao="0.000100885"/>
+    <nuclide name="U238" ao="0.0198227"/>
+    <nuclide name="Pu238" ao="1.7765e-05"/>
+    <nuclide name="Pu239" ao="0.00245032"/>
+    <nuclide name="Pu240" ao="0.000730575"/>
+    <nuclide name="Pu241" ao="0.000196417"/>
+    <nuclide name="Pu242" ao="6.81704e-05"/>
+    <nuclide name="Am241" ao="4.80731e-05"/>
+    <nuclide name="O16" ao="0.046401"/>
+  </material>
+  <material id="30" name="MAT_14I02" depletable="true" temperature="673.0">
+    <density units="sum"/>
+    <nuclide name="U235" ao="5.89977e-05"/>
+    <nuclide name="U238" ao="0.0232427"/>
+    <nuclide name="O16" ao="0.0461374"/>
+  </material>
+  <material id="31" name="MAT_15I02" depletable="true" temperature="673.0">
+    <density units="sum"/>
+    <nuclide name="U235" ao="5.89977e-05"/>
+    <nuclide name="U238" ao="0.0232427"/>
+    <nuclide name="O16" ao="0.0461374"/>
+  </material>
+  <material id="32" name="MAT_16I02" depletable="true" temperature="673.0">
+    <density units="sum"/>
+    <nuclide name="U235" ao="5.89977e-05"/>
+    <nuclide name="U238" ao="0.0232427"/>
+    <nuclide name="O16" ao="0.0461374"/>
+  </material>
+  <material id="33" name="MAT_01O01" depletable="true" temperature="673.0">
+    <density units="sum"/>
+    <nuclide name="U235" ao="5.89977e-05"/>
+    <nuclide name="U238" ao="0.0232427"/>
+    <nuclide name="O16" ao="0.0461374"/>
+  </material>
+  <material id="34" name="MAT_02O01" depletable="true" temperature="673.0">
+    <density units="sum"/>
+    <nuclide name="U235" ao="5.89977e-05"/>
+    <nuclide name="U238" ao="0.0232427"/>
+    <nuclide name="O16" ao="0.0461374"/>
+  </material>
+  <material id="35" name="MAT_03O01" depletable="true" temperature="673.0">
+    <density units="sum"/>
+    <nuclide name="U235" ao="5.89977e-05"/>
+    <nuclide name="U238" ao="0.0232427"/>
+    <nuclide name="O16" ao="0.0461374"/>
+  </material>
+  <material id="36" name="MAT_04O01" depletable="true" temperature="673.0">
+    <density units="sum"/>
+    <nuclide name="U235" ao="9.67558e-05"/>
+    <nuclide name="U238" ao="0.0190112"/>
+    <nuclide name="Pu238" ao="2.20532e-05"/>
+    <nuclide name="Pu239" ao="0.00304177"/>
+    <nuclide name="Pu240" ao="0.000906922"/>
+    <nuclide name="Pu241" ao="0.000243828"/>
+    <nuclide name="Pu242" ao="8.46254e-05"/>
+    <nuclide name="Am241" ao="5.9677e-05"/>
+    <nuclide name="O16" ao="0.0464642"/>
+  </material>
+  <material id="37" name="MAT_05O01" depletable="true" temperature="673.0">
+    <density units="sum"/>
+    <nuclide name="U235" ao="9.67558e-05"/>
+    <nuclide name="U238" ao="0.0190112"/>
+    <nuclide name="Pu238" ao="2.20532e-05"/>
+    <nuclide name="Pu239" ao="0.00304177"/>
+    <nuclide name="Pu240" ao="0.000906922"/>
+    <nuclide name="Pu241" ao="0.000243828"/>
+    <nuclide name="Pu242" ao="8.46254e-05"/>
+    <nuclide name="Am241" ao="5.9677e-05"/>
+    <nuclide name="O16" ao="0.0464642"/>
+  </material>
+  <material id="38" name="MAT_06O01" depletable="true" temperature="673.0">
+    <density units="sum"/>
+    <nuclide name="U235" ao="9.67558e-05"/>
+    <nuclide name="U238" ao="0.0190112"/>
+    <nuclide name="Pu238" ao="2.20532e-05"/>
+    <nuclide name="Pu239" ao="0.00304177"/>
+    <nuclide name="Pu240" ao="0.000906922"/>
+    <nuclide name="Pu241" ao="0.000243828"/>
+    <nuclide name="Pu242" ao="8.46254e-05"/>
+    <nuclide name="Am241" ao="5.9677e-05"/>
+    <nuclide name="O16" ao="0.0464642"/>
+  </material>
+  <material id="39" name="MAT_07O01" depletable="true" temperature="673.0">
+    <density units="sum"/>
+    <nuclide name="U235" ao="9.67558e-05"/>
+    <nuclide name="U238" ao="0.0190112"/>
+    <nuclide name="Pu238" ao="2.20532e-05"/>
+    <nuclide name="Pu239" ao="0.00304177"/>
+    <nuclide name="Pu240" ao="0.000906922"/>
+    <nuclide name="Pu241" ao="0.000243828"/>
+    <nuclide name="Pu242" ao="8.46254e-05"/>
+    <nuclide name="Am241" ao="5.9677e-05"/>
+    <nuclide name="O16" ao="0.0464642"/>
+  </material>
+  <material id="40" name="MAT_08O01" depletable="true" temperature="673.0">
+    <density units="sum"/>
+    <nuclide name="U235" ao="9.67558e-05"/>
+    <nuclide name="U238" ao="0.0190112"/>
+    <nuclide name="Pu238" ao="2.20532e-05"/>
+    <nuclide name="Pu239" ao="0.00304177"/>
+    <nuclide name="Pu240" ao="0.000906922"/>
+    <nuclide name="Pu241" ao="0.000243828"/>
+    <nuclide name="Pu242" ao="8.46254e-05"/>
+    <nuclide name="Am241" ao="5.9677e-05"/>
+    <nuclide name="O16" ao="0.0464642"/>
+  </material>
+  <material id="41" name="MAT_09O01" depletable="true" temperature="673.0">
+    <density units="sum"/>
+    <nuclide name="U235" ao="9.67558e-05"/>
+    <nuclide name="U238" ao="0.0190112"/>
+    <nuclide name="Pu238" ao="2.20532e-05"/>
+    <nuclide name="Pu239" ao="0.00304177"/>
+    <nuclide name="Pu240" ao="0.000906922"/>
+    <nuclide name="Pu241" ao="0.000243828"/>
+    <nuclide name="Pu242" ao="8.46254e-05"/>
+    <nuclide name="Am241" ao="5.9677e-05"/>
+    <nuclide name="O16" ao="0.0464642"/>
+  </material>
+  <material id="42" name="MAT_10O01" depletable="true" temperature="673.0">
+    <density units="sum"/>
+    <nuclide name="U235" ao="9.67558e-05"/>
+    <nuclide name="U238" ao="0.0190112"/>
+    <nuclide name="Pu238" ao="2.20532e-05"/>
+    <nuclide name="Pu239" ao="0.00304177"/>
+    <nuclide name="Pu240" ao="0.000906922"/>
+    <nuclide name="Pu241" ao="0.000243828"/>
+    <nuclide name="Pu242" ao="8.46254e-05"/>
+    <nuclide name="Am241" ao="5.9677e-05"/>
+    <nuclide name="O16" ao="0.0464642"/>
+  </material>
+  <material id="43" name="MAT_11O01" depletable="true" temperature="673.0">
+    <density units="sum"/>
+    <nuclide name="U235" ao="9.67558e-05"/>
+    <nuclide name="U238" ao="0.0190112"/>
+    <nuclide name="Pu238" ao="2.20532e-05"/>
+    <nuclide name="Pu239" ao="0.00304177"/>
+    <nuclide name="Pu240" ao="0.000906922"/>
+    <nuclide name="Pu241" ao="0.000243828"/>
+    <nuclide name="Pu242" ao="8.46254e-05"/>
+    <nuclide name="Am241" ao="5.9677e-05"/>
+    <nuclide name="O16" ao="0.0464642"/>
+  </material>
+  <material id="44" name="MAT_12O01" depletable="true" temperature="673.0">
+    <density units="sum"/>
+    <nuclide name="U235" ao="9.67558e-05"/>
+    <nuclide name="U238" ao="0.0190112"/>
+    <nuclide name="Pu238" ao="2.20532e-05"/>
+    <nuclide name="Pu239" ao="0.00304177"/>
+    <nuclide name="Pu240" ao="0.000906922"/>
+    <nuclide name="Pu241" ao="0.000243828"/>
+    <nuclide name="Pu242" ao="8.46254e-05"/>
+    <nuclide name="Am241" ao="5.9677e-05"/>
+    <nuclide name="O16" ao="0.0464642"/>
+  </material>
+  <material id="45" name="MAT_13O01" depletable="true" temperature="673.0">
+    <density units="sum"/>
+    <nuclide name="U235" ao="9.67558e-05"/>
+    <nuclide name="U238" ao="0.0190112"/>
+    <nuclide name="Pu238" ao="2.20532e-05"/>
+    <nuclide name="Pu239" ao="0.00304177"/>
+    <nuclide name="Pu240" ao="0.000906922"/>
+    <nuclide name="Pu241" ao="0.000243828"/>
+    <nuclide name="Pu242" ao="8.46254e-05"/>
+    <nuclide name="Am241" ao="5.9677e-05"/>
+    <nuclide name="O16" ao="0.0464642"/>
+  </material>
+  <material id="46" name="MAT_14O01" depletable="true" temperature="673.0">
+    <density units="sum"/>
+    <nuclide name="U235" ao="5.89977e-05"/>
+    <nuclide name="U238" ao="0.0232427"/>
+    <nuclide name="O16" ao="0.0461374"/>
+  </material>
+  <material id="47" name="MAT_15O01" depletable="true" temperature="673.0">
+    <density units="sum"/>
+    <nuclide name="U235" ao="5.89977e-05"/>
+    <nuclide name="U238" ao="0.0232427"/>
+    <nuclide name="O16" ao="0.0461374"/>
+  </material>
+  <material id="48" name="MAT_16O01" depletable="true" temperature="673.0">
+    <density units="sum"/>
+    <nuclide name="U235" ao="5.89977e-05"/>
+    <nuclide name="U238" ao="0.0232427"/>
+    <nuclide name="O16" ao="0.0461374"/>
+  </material>
+  <material id="49" name="MAT_01R01" depletable="true" temperature="673.0">
+    <density units="sum"/>
+    <nuclide name="U235" ao="5.89977e-05"/>
+    <nuclide name="U238" ao="0.0232427"/>
+    <nuclide name="O16" ao="0.0461374"/>
+  </material>
+  <material id="50" name="MAT_02R01" depletable="true" temperature="673.0">
+    <density units="sum"/>
+    <nuclide name="U235" ao="5.89977e-05"/>
+    <nuclide name="U238" ao="0.0232427"/>
+    <nuclide name="O16" ao="0.0461374"/>
+  </material>
+  <material id="51" name="MAT_03R01" depletable="true" temperature="673.0">
+    <density units="sum"/>
+    <nuclide name="U235" ao="5.89977e-05"/>
+    <nuclide name="U238" ao="0.0232427"/>
+    <nuclide name="O16" ao="0.0461374"/>
+  </material>
+  <material id="52" name="MAT_04R01" depletable="true" temperature="673.0">
+    <density units="sum"/>
+    <nuclide name="U235" ao="5.89977e-05"/>
+    <nuclide name="U238" ao="0.0232427"/>
+    <nuclide name="O16" ao="0.0461374"/>
+  </material>
+  <material id="53" name="MAT_05R01" depletable="true" temperature="673.0">
+    <density units="sum"/>
+    <nuclide name="U235" ao="5.89977e-05"/>
+    <nuclide name="U238" ao="0.0232427"/>
+    <nuclide name="O16" ao="0.0461374"/>
+  </material>
+  <material id="54" name="MAT_06R01" depletable="true" temperature="673.0">
+    <density units="sum"/>
+    <nuclide name="U235" ao="5.89977e-05"/>
+    <nuclide name="U238" ao="0.0232427"/>
+    <nuclide name="O16" ao="0.0461374"/>
+  </material>
+  <material id="55" name="MAT_07R01" depletable="true" temperature="673.0">
+    <density units="sum"/>
+    <nuclide name="U235" ao="5.89977e-05"/>
+    <nuclide name="U238" ao="0.0232427"/>
+    <nuclide name="O16" ao="0.0461374"/>
+  </material>
+  <material id="56" name="MAT_08R01" depletable="true" temperature="673.0">
+    <density units="sum"/>
+    <nuclide name="U235" ao="5.89977e-05"/>
+    <nuclide name="U238" ao="0.0232427"/>
+    <nuclide name="O16" ao="0.0461374"/>
+  </material>
+  <material id="57" name="MAT_09R01" depletable="true" temperature="673.0">
+    <density units="sum"/>
+    <nuclide name="U235" ao="5.89977e-05"/>
+    <nuclide name="U238" ao="0.0232427"/>
+    <nuclide name="O16" ao="0.0461374"/>
+  </material>
+  <material id="58" name="MAT_10R01" depletable="true" temperature="673.0">
+    <density units="sum"/>
+    <nuclide name="U235" ao="5.89977e-05"/>
+    <nuclide name="U238" ao="0.0232427"/>
+    <nuclide name="O16" ao="0.0461374"/>
+  </material>
+  <material id="59" name="MAT_11R01" depletable="true" temperature="673.0">
+    <density units="sum"/>
+    <nuclide name="U235" ao="5.89977e-05"/>
+    <nuclide name="U238" ao="0.0232427"/>
+    <nuclide name="O16" ao="0.0461374"/>
+  </material>
+  <material id="60" name="MAT_12R01" depletable="true" temperature="673.0">
+    <density units="sum"/>
+    <nuclide name="U235" ao="5.89977e-05"/>
+    <nuclide name="U238" ao="0.0232427"/>
+    <nuclide name="O16" ao="0.0461374"/>
+  </material>
+  <material id="61" name="MAT_13R01" depletable="true" temperature="673.0">
+    <density units="sum"/>
+    <nuclide name="U235" ao="5.89977e-05"/>
+    <nuclide name="U238" ao="0.0232427"/>
+    <nuclide name="O16" ao="0.0461374"/>
+  </material>
+  <material id="62" name="MAT_14R01" depletable="true" temperature="673.0">
+    <density units="sum"/>
+    <nuclide name="U235" ao="5.89977e-05"/>
+    <nuclide name="U238" ao="0.0232427"/>
+    <nuclide name="O16" ao="0.0461374"/>
+  </material>
+  <material id="63" name="MAT_15R01" depletable="true" temperature="673.0">
+    <density units="sum"/>
+    <nuclide name="U235" ao="5.89977e-05"/>
+    <nuclide name="U238" ao="0.0232427"/>
+    <nuclide name="O16" ao="0.0461374"/>
+  </material>
+  <material id="64" name="MAT_16R01" depletable="true" temperature="673.0">
+    <density units="sum"/>
+    <nuclide name="U235" ao="5.89977e-05"/>
+    <nuclide name="U238" ao="0.0232427"/>
+    <nuclide name="O16" ao="0.0461374"/>
+  </material>
+  <material id="65" name="U235" depletable="true">
+    <density value="1.0" units="atom/b-cm"/>
+    <nuclide name="U235" ao="1.0"/>
+  </material>
+  <material id="66" name="U238" depletable="true">
+    <density value="1.0" units="atom/b-cm"/>
+    <nuclide name="U238" ao="1.0"/>
+  </material>
+  <material id="67" name="Pu239" depletable="true">
+    <density value="1.0" units="atom/b-cm"/>
+    <nuclide name="Pu239" ao="1.0"/>
+  </material>
+  <material id="68" name="Na_01I01" temperature="673.0">
+    <density units="sum"/>
+    <nuclide name="Na23" ao="0.0224691"/>
+  </material>
+  <material id="69" name="Na_02I01" temperature="673.0">
+    <density units="sum"/>
+    <nuclide name="Na23" ao="0.0224691"/>
+  </material>
+  <material id="70" name="Na_03I01" temperature="673.0">
+    <density units="sum"/>
+    <nuclide name="Na23" ao="0.0224691"/>
+  </material>
+  <material id="71" name="Na_04I01" temperature="673.0">
+    <density units="sum"/>
+    <nuclide name="Na23" ao="0.0224691"/>
+  </material>
+  <material id="72" name="Na_05I01" temperature="673.0">
+    <density units="sum"/>
+    <nuclide name="Na23" ao="0.0224691"/>
+  </material>
+  <material id="73" name="Na_06I01" temperature="673.0">
+    <density units="sum"/>
+    <nuclide name="Na23" ao="0.0224691"/>
+  </material>
+  <material id="74" name="Na_07I01" temperature="673.0">
+    <density units="sum"/>
+    <nuclide name="Na23" ao="0.0224691"/>
+  </material>
+  <material id="75" name="Na_08I01" temperature="673.0">
+    <density units="sum"/>
+    <nuclide name="Na23" ao="0.0224691"/>
+  </material>
+  <material id="76" name="Na_09I01" temperature="673.0">
+    <density units="sum"/>
+    <nuclide name="Na23" ao="0.0224691"/>
+  </material>
+  <material id="77" name="Na_10I01" temperature="673.0">
+    <density units="sum"/>
+    <nuclide name="Na23" ao="0.0224691"/>
+  </material>
+  <material id="78" name="Na_11I01" temperature="673.0">
+    <density units="sum"/>
+    <nuclide name="Na23" ao="0.0224691"/>
+  </material>
+  <material id="79" name="Na_12I01" temperature="673.0">
+    <density units="sum"/>
+    <nuclide name="Na23" ao="0.0224691"/>
+  </material>
+  <material id="80" name="Na_13I01" temperature="673.0">
+    <density units="sum"/>
+    <nuclide name="Na23" ao="0.0224691"/>
+  </material>
+  <material id="81" name="Na_14I01" temperature="673.0">
+    <density units="sum"/>
+    <nuclide name="Na23" ao="0.0224691"/>
+  </material>
+  <material id="82" name="Na_15I01" temperature="673.0">
+    <density units="sum"/>
+    <nuclide name="Na23" ao="0.0224691"/>
+  </material>
+  <material id="83" name="Na_16I01" temperature="673.0">
+    <density units="sum"/>
+    <nuclide name="Na23" ao="0.0224691"/>
+  </material>
+  <material id="84" name="Na_17I01" temperature="673.0">
+    <density units="sum"/>
+    <nuclide name="Na23" ao="0.0224691"/>
+  </material>
+  <material id="85" name="Na_18I01" temperature="673.0">
+    <density units="sum"/>
+    <nuclide name="Na23" ao="0.0224691"/>
+  </material>
+  <material id="86" name="Na_19I01" temperature="673.0">
+    <density units="sum"/>
+    <nuclide name="Na23" ao="0.0224691"/>
+  </material>
+  <material id="87" name="Na_20I01" temperature="673.0">
+    <density units="sum"/>
+    <nuclide name="Na23" ao="0.0224691"/>
+  </material>
+  <material id="88" name="Na_21I01" temperature="673.0">
+    <density units="sum"/>
+    <nuclide name="Na23" ao="0.0224691"/>
+  </material>
+  <material id="89" name="Na_22I01" temperature="673.0">
+    <density units="sum"/>
+    <nuclide name="Na23" ao="0.0224691"/>
+  </material>
+  <material id="90" name="Na_23I01" temperature="673.0">
+    <density units="sum"/>
+    <nuclide name="Na23" ao="0.0224691"/>
+  </material>
+  <material id="91" name="Na_01I02" temperature="673.0">
+    <density units="sum"/>
+    <nuclide name="Na23" ao="0.0224691"/>
+  </material>
+  <material id="92" name="Na_02I02" temperature="673.0">
+    <density units="sum"/>
+    <nuclide name="Na23" ao="0.0224691"/>
+  </material>
+  <material id="93" name="Na_03I02" temperature="673.0">
+    <density units="sum"/>
+    <nuclide name="Na23" ao="0.0224691"/>
+  </material>
+  <material id="94" name="Na_04I02" temperature="673.0">
+    <density units="sum"/>
+    <nuclide name="Na23" ao="0.0224691"/>
+  </material>
+  <material id="95" name="Na_05I02" temperature="673.0">
+    <density units="sum"/>
+    <nuclide name="Na23" ao="0.0224691"/>
+  </material>
+  <material id="96" name="Na_06I02" temperature="673.0">
+    <density units="sum"/>
+    <nuclide name="Na23" ao="0.0224691"/>
+  </material>
+  <material id="97" name="Na_07I02" temperature="673.0">
+    <density units="sum"/>
+    <nuclide name="Na23" ao="0.0224691"/>
+  </material>
+  <material id="98" name="Na_08I02" temperature="673.0">
+    <density units="sum"/>
+    <nuclide name="Na23" ao="0.0224691"/>
+  </material>
+  <material id="99" name="Na_09I02" temperature="673.0">
+    <density units="sum"/>
+    <nuclide name="Na23" ao="0.0224691"/>
+  </material>
+  <material id="100" name="Na_10I02" temperature="673.0">
+    <density units="sum"/>
+    <nuclide name="Na23" ao="0.0224691"/>
+  </material>
+  <material id="101" name="Na_11I02" temperature="673.0">
+    <density units="sum"/>
+    <nuclide name="Na23" ao="0.0224691"/>
+  </material>
+  <material id="102" name="Na_12I02" temperature="673.0">
+    <density units="sum"/>
+    <nuclide name="Na23" ao="0.0224691"/>
+  </material>
+  <material id="103" name="Na_13I02" temperature="673.0">
+    <density units="sum"/>
+    <nuclide name="Na23" ao="0.0224691"/>
+  </material>
+  <material id="104" name="Na_14I02" temperature="673.0">
+    <density units="sum"/>
+    <nuclide name="Na23" ao="0.0224691"/>
+  </material>
+  <material id="105" name="Na_15I02" temperature="673.0">
+    <density units="sum"/>
+    <nuclide name="Na23" ao="0.0224691"/>
+  </material>
+  <material id="106" name="Na_16I02" temperature="673.0">
+    <density units="sum"/>
+    <nuclide name="Na23" ao="0.0224691"/>
+  </material>
+  <material id="107" name="Na_17I02" temperature="673.0">
+    <density units="sum"/>
+    <nuclide name="Na23" ao="0.0224691"/>
+  </material>
+  <material id="108" name="Na_18I02" temperature="673.0">
+    <density units="sum"/>
+    <nuclide name="Na23" ao="0.0224691"/>
+  </material>
+  <material id="109" name="Na_19I02" temperature="673.0">
+    <density units="sum"/>
+    <nuclide name="Na23" ao="0.0224691"/>
+  </material>
+  <material id="110" name="Na_20I02" temperature="673.0">
+    <density units="sum"/>
+    <nuclide name="Na23" ao="0.0224691"/>
+  </material>
+  <material id="111" name="Na_21I02" temperature="673.0">
+    <density units="sum"/>
+    <nuclide name="Na23" ao="0.0224691"/>
+  </material>
+  <material id="112" name="Na_22I02" temperature="673.0">
+    <density units="sum"/>
+    <nuclide name="Na23" ao="0.0224691"/>
+  </material>
+  <material id="113" name="Na_23I02" temperature="673.0">
+    <density units="sum"/>
+    <nuclide name="Na23" ao="0.0224691"/>
+  </material>
+  <material id="114" name="Na_01O01" temperature="673.0">
+    <density units="sum"/>
+    <nuclide name="Na23" ao="0.0224691"/>
+  </material>
+  <material id="115" name="Na_02O01" temperature="673.0">
+    <density units="sum"/>
+    <nuclide name="Na23" ao="0.0224691"/>
+  </material>
+  <material id="116" name="Na_03O01" temperature="673.0">
+    <density units="sum"/>
+    <nuclide name="Na23" ao="0.0224691"/>
+  </material>
+  <material id="117" name="Na_04O01" temperature="673.0">
+    <density units="sum"/>
+    <nuclide name="Na23" ao="0.0224691"/>
+  </material>
+  <material id="118" name="Na_05O01" temperature="673.0">
+    <density units="sum"/>
+    <nuclide name="Na23" ao="0.0224691"/>
+  </material>
+  <material id="119" name="Na_06O01" temperature="673.0">
+    <density units="sum"/>
+    <nuclide name="Na23" ao="0.0224691"/>
+  </material>
+  <material id="120" name="Na_07O01" temperature="673.0">
+    <density units="sum"/>
+    <nuclide name="Na23" ao="0.0224691"/>
+  </material>
+  <material id="121" name="Na_08O01" temperature="673.0">
+    <density units="sum"/>
+    <nuclide name="Na23" ao="0.0224691"/>
+  </material>
+  <material id="122" name="Na_09O01" temperature="673.0">
+    <density units="sum"/>
+    <nuclide name="Na23" ao="0.0224691"/>
+  </material>
+  <material id="123" name="Na_10O01" temperature="673.0">
+    <density units="sum"/>
+    <nuclide name="Na23" ao="0.0224691"/>
+  </material>
+  <material id="124" name="Na_11O01" temperature="673.0">
+    <density units="sum"/>
+    <nuclide name="Na23" ao="0.0224691"/>
+  </material>
+  <material id="125" name="Na_12O01" temperature="673.0">
+    <density units="sum"/>
+    <nuclide name="Na23" ao="0.0224691"/>
+  </material>
+  <material id="126" name="Na_13O01" temperature="673.0">
+    <density units="sum"/>
+    <nuclide name="Na23" ao="0.0224691"/>
+  </material>
+  <material id="127" name="Na_14O01" temperature="673.0">
+    <density units="sum"/>
+    <nuclide name="Na23" ao="0.0224691"/>
+  </material>
+  <material id="128" name="Na_15O01" temperature="673.0">
+    <density units="sum"/>
+    <nuclide name="Na23" ao="0.0224691"/>
+  </material>
+  <material id="129" name="Na_16O01" temperature="673.0">
+    <density units="sum"/>
+    <nuclide name="Na23" ao="0.0224691"/>
+  </material>
+  <material id="130" name="Na_17O01" temperature="673.0">
+    <density units="sum"/>
+    <nuclide name="Na23" ao="0.0224691"/>
+  </material>
+  <material id="131" name="Na_18O01" temperature="673.0">
+    <density units="sum"/>
+    <nuclide name="Na23" ao="0.0224691"/>
+  </material>
+  <material id="132" name="Na_19O01" temperature="673.0">
+    <density units="sum"/>
+    <nuclide name="Na23" ao="0.0224691"/>
+  </material>
+  <material id="133" name="Na_20O01" temperature="673.0">
+    <density units="sum"/>
+    <nuclide name="Na23" ao="0.0224691"/>
+  </material>
+  <material id="134" name="Na_21O01" temperature="673.0">
+    <density units="sum"/>
+    <nuclide name="Na23" ao="0.0224691"/>
+  </material>
+  <material id="135" name="Na_22O01" temperature="673.0">
+    <density units="sum"/>
+    <nuclide name="Na23" ao="0.0224691"/>
+  </material>
+  <material id="136" name="Na_23O01" temperature="673.0">
+    <density units="sum"/>
+    <nuclide name="Na23" ao="0.0224691"/>
+  </material>
+  <material id="137" name="Na_01R01" temperature="673.0">
+    <density units="sum"/>
+    <nuclide name="Na23" ao="0.0224691"/>
+  </material>
+  <material id="138" name="Na_02R01" temperature="673.0">
+    <density units="sum"/>
+    <nuclide name="Na23" ao="0.0224691"/>
+  </material>
+  <material id="139" name="Na_03R01" temperature="673.0">
+    <density units="sum"/>
+    <nuclide name="Na23" ao="0.0224691"/>
+  </material>
+  <material id="140" name="Na_04R01" temperature="673.0">
+    <density units="sum"/>
+    <nuclide name="Na23" ao="0.0224691"/>
+  </material>
+  <material id="141" name="Na_05R01" temperature="673.0">
+    <density units="sum"/>
+    <nuclide name="Na23" ao="0.0224691"/>
+  </material>
+  <material id="142" name="Na_06R01" temperature="673.0">
+    <density units="sum"/>
+    <nuclide name="Na23" ao="0.0224691"/>
+  </material>
+  <material id="143" name="Na_07R01" temperature="673.0">
+    <density units="sum"/>
+    <nuclide name="Na23" ao="0.0224691"/>
+  </material>
+  <material id="144" name="Na_08R01" temperature="673.0">
+    <density units="sum"/>
+    <nuclide name="Na23" ao="0.0224691"/>
+  </material>
+  <material id="145" name="Na_09R01" temperature="673.0">
+    <density units="sum"/>
+    <nuclide name="Na23" ao="0.0224691"/>
+  </material>
+  <material id="146" name="Na_10R01" temperature="673.0">
+    <density units="sum"/>
+    <nuclide name="Na23" ao="0.0224691"/>
+  </material>
+  <material id="147" name="Na_11R01" temperature="673.0">
+    <density units="sum"/>
+    <nuclide name="Na23" ao="0.0224691"/>
+  </material>
+  <material id="148" name="Na_12R01" temperature="673.0">
+    <density units="sum"/>
+    <nuclide name="Na23" ao="0.0224691"/>
+  </material>
+  <material id="149" name="Na_13R01" temperature="673.0">
+    <density units="sum"/>
+    <nuclide name="Na23" ao="0.0224691"/>
+  </material>
+  <material id="150" name="Na_14R01" temperature="673.0">
+    <density units="sum"/>
+    <nuclide name="Na23" ao="0.0224691"/>
+  </material>
+  <material id="151" name="Na_15R01" temperature="673.0">
+    <density units="sum"/>
+    <nuclide name="Na23" ao="0.0224691"/>
+  </material>
+  <material id="152" name="Na_16R01" temperature="673.0">
+    <density units="sum"/>
+    <nuclide name="Na23" ao="0.0224691"/>
+  </material>
+  <material id="153" name="Na_17R01" temperature="673.0">
+    <density units="sum"/>
+    <nuclide name="Na23" ao="0.0224691"/>
+  </material>
+  <material id="154" name="Na_18R01" temperature="673.0">
+    <density units="sum"/>
+    <nuclide name="Na23" ao="0.0224691"/>
+  </material>
+  <material id="155" name="Na_19R01" temperature="673.0">
+    <density units="sum"/>
+    <nuclide name="Na23" ao="0.0224691"/>
+  </material>
+  <material id="156" name="Na_20R01" temperature="673.0">
+    <density units="sum"/>
+    <nuclide name="Na23" ao="0.0224691"/>
+  </material>
+  <material id="157" name="Na_21R01" temperature="673.0">
+    <density units="sum"/>
+    <nuclide name="Na23" ao="0.0224691"/>
+  </material>
+  <material id="158" name="Na_22R01" temperature="673.0">
+    <density units="sum"/>
+    <nuclide name="Na23" ao="0.0224691"/>
+  </material>
+  <material id="159" name="Na_23R01" temperature="673.0">
+    <density units="sum"/>
+    <nuclide name="Na23" ao="0.0224691"/>
+  </material>
+  <material id="160" name="wrap" temperature="673.0">
+    <density units="sum"/>
+    <nuclide name="C0" ao="0.000195513"/>
+    <nuclide name="Si28" ao="0.000928063"/>
+    <nuclide name="Si29" ao="4.552e-05"/>
+    <nuclide name="Si30" ao="2.90426e-05"/>
+    <nuclide name="P31" ao="4.54479e-05"/>
+    <nuclide name="Ti46" ao="3.36969e-05"/>
+    <nuclide name="Ti47" ao="2.97418e-05"/>
+    <nuclide name="Ti48" ao="0.000288578"/>
+    <nuclide name="Ti49" ao="2.07448e-05"/>
+    <nuclide name="Ti50" ao="1.94665e-05"/>
+    <nuclide name="Cr50" ao="0.000653123"/>
+    <nuclide name="Cr52" ao="0.0121112"/>
+    <nuclide name="Cr53" ao="0.00134737"/>
+    <nuclide name="Cr54" ao="0.000329182"/>
+    <nuclide name="Mn55" ao="0.00145198"/>
+    <nuclide name="Fe54" ao="0.0032908"/>
+    <nuclide name="Fe56" ao="0.0498158"/>
+    <nuclide name="Fe57" ao="0.00113025"/>
+    <nuclide name="Fe58" ao="0.000147824"/>
+    <nuclide name="Ni58" ao="0.00771919"/>
+    <nuclide name="Ni60" ao="0.0028744"/>
+    <nuclide name="Ni61" ao="0.000122897"/>
+    <nuclide name="Ni62" ao="0.000385551"/>
+    <nuclide name="Ni64" ao="9.51043e-05"/>
+    <nuclide name="Mo92" ao="0.000185458"/>
+    <nuclide name="Mo94" ao="0.000114304"/>
+    <nuclide name="Mo95" ao="0.000195789"/>
+    <nuclide name="Mo96" ao="0.000203902"/>
+    <nuclide name="Mo97" ao="0.000116211"/>
+    <nuclide name="Mo98" ao="0.000292234"/>
+    <nuclide name="Mo100" ao="0.000115302"/>
+  </material>
+  <material id="161" name="clad" temperature="673.0">
+    <density units="sum"/>
+    <nuclide name="C0" ao="0.000195513"/>
+    <nuclide name="Si28" ao="0.000928063"/>
+    <nuclide name="Si29" ao="4.552e-05"/>
+    <nuclide name="Si30" ao="2.90426e-05"/>
+    <nuclide name="P31" ao="4.54479e-05"/>
+    <nuclide name="Ti46" ao="3.36969e-05"/>
+    <nuclide name="Ti47" ao="2.97418e-05"/>
+    <nuclide name="Ti48" ao="0.000288578"/>
+    <nuclide name="Ti49" ao="2.07448e-05"/>
+    <nuclide name="Ti50" ao="1.94665e-05"/>
+    <nuclide name="Cr50" ao="0.000653123"/>
+    <nuclide name="Cr52" ao="0.0121112"/>
+    <nuclide name="Cr53" ao="0.00134737"/>
+    <nuclide name="Cr54" ao="0.000329182"/>
+    <nuclide name="Mn55" ao="0.00145198"/>
+    <nuclide name="Fe54" ao="0.0032908"/>
+    <nuclide name="Fe56" ao="0.0498158"/>
+    <nuclide name="Fe57" ao="0.00113025"/>
+    <nuclide name="Fe58" ao="0.000147824"/>
+    <nuclide name="Ni58" ao="0.00771919"/>
+    <nuclide name="Ni60" ao="0.0028744"/>
+    <nuclide name="Ni61" ao="0.000122897"/>
+    <nuclide name="Ni62" ao="0.000385551"/>
+    <nuclide name="Ni64" ao="9.51043e-05"/>
+    <nuclide name="Mo92" ao="0.000185458"/>
+    <nuclide name="Mo94" ao="0.000114304"/>
+    <nuclide name="Mo95" ao="0.000195789"/>
+    <nuclide name="Mo96" ao="0.000203902"/>
+    <nuclide name="Mo97" ao="0.000116211"/>
+    <nuclide name="Mo98" ao="0.000292234"/>
+    <nuclide name="Mo100" ao="0.000115302"/>
+  </material>
+  <material id="162" name="CRsteel" temperature="673.0">
+    <density units="sum"/>
+    <nuclide name="C0" ao="0.000195513"/>
+    <nuclide name="Si28" ao="0.000928063"/>
+    <nuclide name="Si29" ao="4.552e-05"/>
+    <nuclide name="Si30" ao="2.90426e-05"/>
+    <nuclide name="P31" ao="4.54479e-05"/>
+    <nuclide name="Ti46" ao="3.36969e-05"/>
+    <nuclide name="Ti47" ao="2.97418e-05"/>
+    <nuclide name="Ti48" ao="0.000288578"/>
+    <nuclide name="Ti49" ao="2.07448e-05"/>
+    <nuclide name="Ti50" ao="1.94665e-05"/>
+    <nuclide name="Cr50" ao="0.000653123"/>
+    <nuclide name="Cr52" ao="0.0121112"/>
+    <nuclide name="Cr53" ao="0.00134737"/>
+    <nuclide name="Cr54" ao="0.000329182"/>
+    <nuclide name="Mn55" ao="0.00145198"/>
+    <nuclide name="Fe54" ao="0.0032908"/>
+    <nuclide name="Fe56" ao="0.0498158"/>
+    <nuclide name="Fe57" ao="0.00113025"/>
+    <nuclide name="Fe58" ao="0.000147824"/>
+    <nuclide name="Ni58" ao="0.00771919"/>
+    <nuclide name="Ni60" ao="0.0028744"/>
+    <nuclide name="Ni61" ao="0.000122897"/>
+    <nuclide name="Ni62" ao="0.000385551"/>
+    <nuclide name="Ni64" ao="9.51043e-05"/>
+    <nuclide name="Mo92" ao="0.000185458"/>
+    <nuclide name="Mo94" ao="0.000114304"/>
+    <nuclide name="Mo95" ao="0.000195789"/>
+    <nuclide name="Mo96" ao="0.000203902"/>
+    <nuclide name="Mo97" ao="0.000116211"/>
+    <nuclide name="Mo98" ao="0.000292234"/>
+    <nuclide name="Mo100" ao="0.000115302"/>
+  </material>
+  <material id="163" name="Na_TAVG" temperature="673.0">
+    <density units="sum"/>
+    <nuclide name="Na23" ao="0.0224691"/>
+  </material>
+  <material id="164" name="Na_IF_OUT" temperature="673.0">
+    <density units="sum"/>
+    <nuclide name="Na23" ao="0.0224691"/>
+  </material>
+  <material id="165" name="Na_OF_OUT" temperature="673.0">
+    <density units="sum"/>
+    <nuclide name="Na23" ao="0.0224691"/>
+  </material>
+  <material id="166" name="Na_RB_OUT" temperature="673.0">
+    <density units="sum"/>
+    <nuclide name="Na23" ao="0.0224691"/>
+  </material>
+  <material id="167" name="90B4C" temperature="673.0">
+    <density units="sum"/>
+    <nuclide name="B10" ao="0.0886421"/>
+    <nuclide name="B11" ao="0.00984912"/>
+    <nuclide name="C0" ao="0.0328304"/>
+  </material>
+  <material id="168" name="He" temperature="673.0">
+    <density units="sum"/>
+    <nuclide name="He4" ao="1e-05"/>
+  </material>
+  <material id="169" name="Diluent" temperature="673.0">
+    <density units="sum"/>
+    <nuclide name="Na23" ao="0.00565062"/>
+    <nuclide name="Fe56" ao="0.0158013"/>
+    <nuclide name="Fe54" ao="0.000999218"/>
+    <nuclide name="Fe57" ao="0.000379012"/>
+    <nuclide name="Fe58" ao="4.82379e-05"/>
+    <nuclide name="Cr52" ao="0.00415405"/>
+    <nuclide name="Cr50" ao="0.00021512"/>
+    <nuclide name="Cr53" ao="0.000471037"/>
+    <nuclide name="Cr54" ao="0.000117251"/>
+    <nuclide name="Ni58" ao="0.00246164"/>
+    <nuclide name="Ni60" ao="0.000945273"/>
+    <nuclide name="Ni61" ao="4.1222e-06"/>
+    <nuclide name="Ni62" ao="0.000131404"/>
+    <nuclide name="Ni64" ao="3.34838e-05"/>
+    <nuclide name="Mo92" ao="6.45031e-05"/>
+    <nuclide name="Mo94" ao="4.02058e-05"/>
+    <nuclide name="Mo95" ao="6.91973e-05"/>
+    <nuclide name="Mo96" ao="7.25007e-05"/>
+    <nuclide name="Mo97" ao="4.15097e-05"/>
+    <nuclide name="Mo98" ao="0.000104883"/>
+    <nuclide name="Mo100" ao="4.18574e-05"/>
+    <nuclide name="Ti46" ao="2.25495e-05"/>
+    <nuclide name="Ti47" ao="2.05887e-05"/>
+    <nuclide name="Ti48" ao="0.000207848"/>
+    <nuclide name="Ti49" ao="1.54905e-05"/>
+    <nuclide name="Ti50" ao="1.51964e-05"/>
+    <nuclide name="Cu63" ao="0.000128434"/>
+    <nuclide name="Cu65" ao="5.73542e-05"/>
+    <nuclide name="Si28" ao="0.000609818"/>
+    <nuclide name="Si29" ao="3.0883e-05"/>
+    <nuclide name="Si30" ao="2.04907e-05"/>
+    <nuclide name="Mn55" ao="0.000922148"/>
+  </material>
+  <material id="170" name="Shield" temperature="673.0">
+    <density units="sum"/>
+    <nuclide name="Na23" ao="0.0107169"/>
+    <nuclide name="Fe56" ao="0.0239422"/>
+    <nuclide name="Fe54" ao="0.001514"/>
+    <nuclide name="Fe57" ao="0.000574278"/>
+    <nuclide name="Fe58" ao="7.30899e-05"/>
+    <nuclide name="Cr52" ao="0.00629409"/>
+    <nuclide name="Cr50" ao="0.00032639"/>
+    <nuclide name="Cr53" ao="0.000713699"/>
+    <nuclide name="Cr54" ao="0.000177655"/>
+    <nuclide name="Ni58" ao="0.00372977"/>
+    <nuclide name="Ni60" ao="0.00143669"/>
+    <nuclide name="Ni61" ao="6.24578e-06"/>
+    <nuclide name="Ni62" ao="0.000199098"/>
+    <nuclide name="Ni64" ao="5.07332e-05"/>
+    <nuclide name="Mo92" ao="9.77308e-05"/>
+    <nuclide name="Mo94" ao="6.09171e-05"/>
+    <nuclide name="Mo95" ao="0.000104844"/>
+    <nuclide name="Mo96" ao="0.000109849"/>
+    <nuclide name="Mo97" ao="6.28929e-05"/>
+    <nuclide name="Mo98" ao="0.000158911"/>
+    <nuclide name="Mo100" ao="6.34196e-05"/>
+    <nuclide name="Ti46" ao="1.53925e-05"/>
+    <nuclide name="Ti47" ao="1.40199e-05"/>
+    <nuclide name="Ti48" ao="0.00014118"/>
+    <nuclide name="Ti49" ao="1.05885e-05"/>
+    <nuclide name="Ti50" ao="1.03924e-05"/>
+    <nuclide name="Cu63" ao="8.7551e-05"/>
+    <nuclide name="Cu65" ao="3.90205e-05"/>
+    <nuclide name="Si28" ao="0.000414715"/>
+    <nuclide name="Si29" ao="2.09809e-05"/>
+    <nuclide name="Si30" ao="1.39219e-05"/>
+    <nuclide name="Mn55" ao="0.000627308"/>
+  </material>
+</materials>

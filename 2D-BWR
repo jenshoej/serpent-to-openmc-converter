@@ -1,0 +1,308 @@
+% --- NEA BUC Criticality Safety Benchmark Phase III-C
+
+set title "NEA/NSC/R/(2015)6"
+
+% -----------------------------------------------------------------------------
+
+% --- Geometry  ---------------------------------------------------------------
+
+% --- Fuel Pin definitions:
+
+pin 1
+fuel1  0.48
+clad   0.55
+cool40
+
+pin 2
+fuel2  0.48
+clad   0.55
+cool40
+
+pin 3
+fuel3  0.48
+clad   0.55
+cool40
+
+pin 4
+fuel4  0.48
+clad   0.55
+cool40
+
+pin 5
+fuel5  0.48
+clad   0.55
+cool40
+
+pin G
+fuelG  0.48
+clad   0.55
+cool40
+
+% --- Empty lattice position:
+
+pin W
+cool40   
+
+% --- Lattice (type = 1, pin pitch = 1.45):
+
+lat 10  1  0.0 0.0 11 11 1.45
+W W W W W W W W W W W 
+W 5 4 3 2 2 W W W W W 
+W W 3 G 2 G W W W W W 
+W W W 1 2 2 W W W W W 
+W W W W W W W W W W W 
+W W W W W W W W W W W 
+W W W W W W W W W W W 
+W W W W W W W W W W W 
+W W W W W W W W W W W 
+W W W W W W W W W W W 
+W W W W W W W W W W W
+
+% --- 45 degree symmetry
+
+set usym 10 3 2 0.0 0.0 225 45
+
+% --- Outer channel & box wall (assembly pitch = 15.24):
+
+surf 1  sqc   0.0  0.0  6.700
+surf 2  sqc   0.0  0.0  6.950
+surf 3  sqc   0.0  0.0  7.620
+
+% --- Water channel:
+
+surf 4  sqc   0.0  0.0  1.850
+surf 5  sqc   0.0  0.0  1.925
+
+% --- Cell definitions:
+
+cell  1  0  moder    -4      % Inner water channel
+cell  2  0  box       4  -5  % Inner water channel wall
+cell  3  0  fill 10  -1   5  % Pin lattice
+cell  4  0  box       1  -2  % Channel box wall
+cell  5  0  moder     2  -3  % Outer water cnallel
+cell 99  0  outside   3      % Outside world
+
+% --- Reflective boundary condition:
+
+set bc 2
+
+% -----------------------------------------------------------------------------
+
+% --- Material compositions ---------------------------------------------------
+
+% --- Fuel type 1: 4.9wt% U235
+
+mat fuel1  sum burn 1  rgb 227 7 19
+92234.09c  8.5649E-6
+92235.09c  1.1221E-3
+92238.09c  2.1495E-2
+ 8016.09c  4.5252E-2
+
+% --- Fuel type 2: 4.4wt% U235
+
+mat fuel2  sum burn 1  rgb 238 130 98
+92234.09c  7.6910E-6
+92235.09c  1.0076E-3
+92238.09c  2.1609E-2
+ 8016.09c  4.5249E-2
+
+% --- Fuel type 3: 3.9wt% U235
+
+mat fuel3  sum burn 1  rgb 220 227 131
+92234.09c  6.8170E-6
+92235.09c  8.9315E-4
+92238.09c  2.1723E-2
+ 8016.09c  4.5247E-2
+
+% --- Fuel type 4: 3.4wt% U235
+
+mat fuel4  sum burn 1  rgb 212 190 202
+92234.09c  5.9431E-6
+92235.09c  7.7865E-4
+92238.09c  2.1838E-2
+ 8016.09c  4.5244E-2
+
+% --- Fuel type 5: 2.1wt% U235
+
+mat fuel5  sum burn 1  rgb 182 178 157
+92234.09c  3.6708E-6
+92235.09c  4.8094E-4
+92238.09c  2.2134E-2
+ 8016.09c  4.5238E-2
+
+% --- Fuel type G: 3.4wt% U235, 5.0wt% Gd
+
+mat fuelG  sum burn 1  rgb 7 227 19
+92234.09c  5.5429E-6
+92235.09c  7.2622E-4
+92238.09c  2.0367E-2
+ 8016.09c  4.4678E-2
+64154.09c  3.6051E-5
+64155.09c  2.4475E-4
+64156.09c  3.3852E-4
+64157.09c  2.5881E-4
+64158.09c  4.1079E-4
+64160.09c  3.6481E-4
+
+% --- Division into burnup zones
+
+div fuel1 sep 1
+div fuel2 sep 1
+div fuel3 sep 1
+div fuel4 sep 1
+div fuel5 sep 1
+div fuelG sep 1 subr 10 0.0 0.48
+
+% --- Fuel volumes:
+
+set mvol
+
+fuel1    1    2.8953
+fuel2    5    2.8953
+fuel2    4    5.7906
+fuel2    3    5.7906
+fuel2    2    2.8953
+fuel2    1    5.7906
+fuel3    2    2.8953
+fuel3    1    5.7906
+fuel4    1    5.7906
+fuel5    1    2.8953
+fuelG   20    0.2895
+fuelG   19    0.2895
+fuelG   18    0.2895
+fuelG   17    0.2895
+fuelG   16    0.2895
+fuelG   15    0.2895
+fuelG   14    0.2895
+fuelG   13    0.2895
+fuelG   12    0.2895
+fuelG   11    0.2895
+fuelG   10    0.5791
+fuelG    9    0.5791
+fuelG    8    0.5791
+fuelG    7    0.5791
+fuelG    6    0.5791
+fuelG    5    0.5791
+fuelG    4    0.5791
+fuelG    3    0.5791
+fuelG    2    0.5791
+fuelG    1    0.5791
+
+% --- Cladding and channel box wall:
+
+mat clad   sum tmp 559  rgb 255 251 220
+50000.03c  4.9797E-4
+26000.03c  9.1782E-5
+24000.03c  7.5861E-5
+28000.03c  4.0314E-5
+40000.03c  4.2465E-2
+
+mat box    sum tmp 559  rgb 255 251 220
+50000.03c  4.9797E-4
+26000.03c  9.1782E-5
+24000.03c  7.5861E-5
+28000.03c  4.0314E-5
+40000.03c  4.2465E-2
+
+% --- Coolant with different void fractions
+
+mat cool0   sum tmp 559 moder lwtr 1001  rgb 255 255 255
+1001.03c  4.9316E-2
+8016.03c  2.4658E-2
+
+mat cool40   sum tmp 559 moder lwtr 1001  rgb 255 255 255
+1001.03c  3.0588E-2
+8016.03c  1.5294E-2
+
+mat cool70   sum tmp 559 moder lwtr 1001  rgb 255 255 255
+1001.03c  1.6542E-2
+8016.03c  8.2712E-2
+
+% --- Moderator:
+
+mat moder   sum tmp 559 moder lwtr 1001  rgb 161 218 247
+1001.03c  4.9316E-2
+8016.03c  2.4658E-2
+
+% --- Thermal scattering data for light water:
+
+therm lwtr 559 lwj3.09t lwj3.11t
+
+% -----------------------------------------------------------------------------
+
+% --- Options & data libraries ------------------------------------------------
+
+% --- Libraries:
+
+set acelib "sss_jeff311u.xsdata"
+set declib "sss_jeff31.dec"
+set nfylib "sss_jeff31.nfy"
+
+% --- Neutron population and criticality cycles:
+
+set pop 2000 500 20
+
+% --- Geometry and mesh plots:
+
+plot 3 500 500
+mesh 3 500 500
+
+% -----------------------------------------------------------------------------
+
+% --- Burnup calculation ------------------------------------------------------
+
+% --- Power density for normalization
+
+set powdens 25.3E-3
+
+% --- Predictor-corrector algorithm & sub-steps
+
+set pcc LELI 10 10
+
+% --- Depletion history
+
+dep butot
+0.2 0.5
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15
+20 25 30 35 40 45 50
+
+set inventory
+
+922340
+922350
+922360
+922380
+932370
+942380
+942390
+942400
+942410
+942420
+952410
+952430
+962440
+380900
+420950
+430990
+441010
+451030
+471090
+531290
+541310
+551330
+551340
+551370
+621470
+621490
+621500
+621510
+621520
+631530
+631540
+631550
+641550
+641560
+641570
+641580
+
+% -----------------------------------------------------------------------------

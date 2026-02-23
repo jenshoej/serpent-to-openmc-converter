@@ -1,0 +1,134 @@
+% --- VVER-440 Assembly --------------------------------------
+
+set title "VVER-440"
+
+% --- Fuel pin with central hole:
+
+pin 1
+void   0.07000
+fuel   0.38000
+void   0.39000
+clad   0.45500
+water   
+
+% --- Central tube:
+
+pin 2 
+water  0.44000
+clad   0.51500
+water   
+
+% --- Empty lattice position:
+
+pin 3
+water   
+
+% --- Lattice (type = 2, pin pitch = 1.23 cm):
+
+lat 10  2  0.0 0.0 15 15 1.23
+3 3 3 3 3 3 3 3 3 3 3 3 3 3 3
+ 3 3 3 3 3 3 3 2 2 2 2 2 2 2 3
+  3 3 3 3 3 3 2 1 1 1 1 1 1 2 3 
+   3 3 3 3 3 2 1 2 2 2 2 2 1 2 3 
+    3 3 3 3 2 1 2 1 1 1 1 2 1 2 3 
+     3 3 3 2 1 2 1 2 2 2 1 2 1 2 3
+      3 3 2 1 2 1 2 1 1 2 1 2 1 2 3
+       3 2 1 2 1 2 1 3 1 2 1 2 1 2 3
+        3 2 1 2 1 2 1 1 2 1 2 1 2 3 3
+         3 2 1 2 1 2 2 2 1 2 1 2 3 3 3 
+          3 2 1 2 1 1 1 1 2 1 2 3 3 3 3
+           3 2 1 2 2 2 2 2 1 2 3 3 3 3 3
+            3 2 1 1 1 1 1 1 2 3 3 3 3 3 3
+             3 2 2 2 2 2 2 2 3 3 3 3 3 3 3
+              3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 
+
+% --- Surfaces (assembly pitch = 14.7 cm):
+
+surf 1  hexyc    0.0  0.0  7.100  % Shroud tube inner radius
+surf 2  hexyc    0.0  0.0  7.250  % Shroud tube outer radius
+surf 3  hexyc    0.0  0.0  7.350  % Outer boundary
+
+% --- Cells:
+
+cell  1  0  fill 10  -1        % Pin lattice                 
+cell  4  0  tube      1    -2  % Shroud tube                
+cell  5  0  water     2    -3  % Water in channel                
+cell 99  0  outside         3  % Outside world                
+
+% --- UO2 fuel enriched to 3.6 wt-% U-235:
+
+mat fuel   -10.45000
+92235.09c   -0.03173
+92238.09c   -0.84977
+ 8016.09c   -0.11850
+
+% --- Zr-Nb cladding and shroud tube:
+
+mat clad    -6.55000
+40000.06c   -0.99000
+41093.06c   -0.01000
+
+mat tube    -6.55000
+40000.06c   -0.97500
+41093.06c   -0.02500
+
+% --- Water: (1 ppm boron for iteration)
+
+mat water   -0.7207  moder lwtr 1001
+ 1001.06c    2.0
+ 8016.06c    1.0
+ 5010.06c    0.2E-6
+ 5011.06c    0.8E-6
+
+% --- Iterate critical boron concentration:
+
+set iter nuc 50 1.0 2 50100 50110 1 water
+
+% --- Thermal scattering data for light water:
+
+therm lwtr lwj3.11t
+
+% --- Cross section library file path:
+
+set acelib "sss_jeff31u.xsdata"
+
+% --- Periodic boundary condition:
+
+set bc 3
+
+% --- Neutron population and criticality cycles:
+
+set pop 2000 500 20
+
+% --- Mesh plot:
+
+mesh 3 500 500
+
+% --- Geometry plots:
+
+plot 30 500 500  % No boundaries
+plot 31 500 500  % Cell boundaries
+plot 32 500 500  % Material boundaries (default)
+plot 33 500 500  % Both cell amd material boundaries
+
+% --- Detector energy grid (uniform lethargy):
+
+ene 1 3 1000 1E-9 12.0
+
+% --- Flux per lethargy:
+
+det 1 de 1 dt -3
+
+% --- Differential capture, fission and production spectra:
+
+det 2 de 1 dt -2 dr -2 void
+det 3 de 1 dt -2 dr -6 void
+det 4 de 1 dt -2 dr -7 void
+
+% --- Integral capture, fission and production spectra:
+
+det 5 de 1 dt -1 dr -2 void
+det 6 de 1 dt -1 dr -6 void
+det 7 de 1 dt -1 dr -7 void
+
+% ------------------------------------------------------------
