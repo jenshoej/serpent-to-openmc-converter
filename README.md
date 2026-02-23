@@ -3,7 +3,7 @@
 [![License](https://img.shields.io/badge/license-MIT-green)](https://opensource.org/licenses/MIT)
 
 This repository provides tools for parsing/converting Serpent models to OpenMC
-classes and/or XML files.
+classes and/or XML files. It is a further development of code from the openmc-dev team, found at https://github.com/openmc-dev/openmc_serpent_adapter.
 
 ## What This Produces
 
@@ -16,11 +16,29 @@ model from supported cards and can produce:
 
 The converter currently targets material and geometry translation. It does not
 automatically create OpenMC source/tally/settings definitions equivalent to
-Serpent `src`/`det` input.
+Serpent `src`/`det` input. These should be created manually through the Python API before assembling the final OpenMC model.
 
 ## How To Use It
 
-### 1. Install in editable mode
+### 1. Get the code first
+
+Unlike `pip install numpy`, this project is typically installed from a local
+checkout so you can import it and edit it.
+
+Option A (recommended, with git):
+
+```bash
+git clone hhttps://github.com/jenshoej/serpent-to-openmc-converter.git
+cd openmc_serpent_adapter
+```
+
+Option B (no git):
+
+- Download the repository ZIP from GitHub
+- Extract it
+- `cd` into the extracted `openmc_serpent_adapter` folder (the one containing `pyproject.toml`)
+
+### 2. Install in editable mode (`pip install -e .`)
 
 From the repository root:
 
@@ -28,7 +46,16 @@ From the repository root:
 pip install -e .
 ```
 
-### 2. Convert and extend in Python
+What this means:
+
+- `.` means "install the project in this current folder"
+- `-e` means editable install (your local source code is linked into the environment)
+- Edits to the code are picked up without reinstalling each time
+
+This is different from `pip install numpy`, which downloads a published package
+from PyPI and installs a fixed copy.
+
+### 3. Convert and extend in Python
 
 ```python
 from pathlib import Path
@@ -62,6 +89,12 @@ model.export_to_model_xml(path="model.xml")
 
 `build_openmc_model(...)` is also available if you just want a ready-to-export
 model before adding your own settings/tallies.
+
+## Logic
+
+The logic is structured as follows:
+
+Serpent input -> IR layer as Python dicts -> OpenMC equivalent classes
 
 ## Known Limitations
 
