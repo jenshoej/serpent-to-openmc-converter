@@ -60,11 +60,16 @@ from PyPI and installs a fixed copy.
 ```python
 from pathlib import Path
 import openmc
-from src.serpent_to_openmc import build_openmc_components
+from src.serpent_to_openmc import build_model
 
-materials, geom_components, root = build_openmc_components(Path("path/to/input"))
-model = openmc.Model(geometry=openmc.Geometry(root))
-model.materials = openmc.Materials(materials.values())
+model, report = build_model(Path("path/to/input"))
+
+# Example: access a preserved Serpent lattice-entry map for assembly-wise
+# postprocessing or benchmark comparisons.
+core_map = report.lattice_maps.get("l_core")
+if core_map is not None:
+    print(core_map["dimension"])
+    print(core_map["serpent_grid"][0][0])
 
 # Add OpenMC-native features (example: settings/tallies)
 model.settings = openmc.Settings()
@@ -73,19 +78,45 @@ model.settings.inactive = 10
 model.settings.particles = 10000
 
 tally = openmc.Tally(name="flux")
-tally.filters = [openmc.CellFilter(list(geom_components["cells"].values()))]
+tally.filters = [openmc.CellFilter(list(model.geometry.get_all_cells().values()))]
 tally.scores = ["flux"]
 model.tallies = openmc.Tallies([tally])
 
 model.export_to_model_xml(path="model.xml")
 ```
 
+If you prefer direct access to the converted geometry pieces, `build_openmc_components(...)`
+is still available and returns materials, geometry-component lookup maps, and the
+selected root universe.
+
+To inspect run-relevant Serpent `set` cards without applying them automatically:
+
+```python
+from pathlib import Path
+from src.serpent_to_openmc import summarize_run_settings
+
+settings = summarize_run_settings(Path("path/to/input"))
+print(settings.particles, settings.inactive_generations, settings.seed)
+```
+
 `build_openmc_components(...)` returns:
 
 - `materials`: `dict[str, openmc.Material]`
 - `geom_components`: dict containing `surfaces`, `pins`, `lattices`, `cells`,
-  `universes`, and `outside_cells`
+  `universes`, `outside_cells`, and `lattice_maps`
 - `root`: selected root `openmc.Universe`
+
+`geom_components["lattice_maps"]` preserves Serpent lattice-entry metadata in a
+postprocessing-friendly form. For 2D lattices this includes dimensions, pitch,
+the Serpent-order `serpent_grid`, and per-position records. Hex lattices also
+include axial `(q, r)` coordinates and ring indices.
+
+`build_model(...)` returns:
+
+- `model`: base `openmc.Model` with converted geometry/materials attached
+- `report`: `ConversionReport` summarizing counts, root universe, outside cells,
+  applied boundary condition, parsed run settings, and preserved Serpent
+  lattice maps
 
 `build_openmc_model(...)` is also available if you just want a ready-to-export
 model before adding your own settings/tallies.
@@ -126,4 +157,7 @@ Lattices:
 
 Set cards:
 
-- Only `set usym` is parsed. `set root` and `set bc` are ignored (manual selection).
+- `set usym` is parsed for rectangular symmetry expansion.
+- `set bc 1` is translated to OpenMC `vacuum` on surfaces referenced by Serpent
+  `outside` cells.
+- `set root` is ignored, and `set bc` modes other than `1` are not yet applied.

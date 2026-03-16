@@ -6,10 +6,13 @@ from collections import Counter
 from typing import Any, Dict, Iterable, List, Tuple
 
 import openmc
-import openmc.data
 from openmc.model.surface_composite import CompositeSurface
 
-from .serpent_geometry import sqc, vertical_stack
+try:
+    from openmc.element import NATURAL_ABUNDANCE, Element
+except Exception:
+    NATURAL_ABUNDANCE = None
+    Element = None
 
 
 class HexagonalPrismZ(CompositeSurface):
@@ -42,56 +45,93 @@ class HexagonalPrismZ(CompositeSurface):
         return +self.prism | -self.zmin | +self.zmax
 
 
-def iter_natural_isotopes(element: str) -> List[tuple[str, float]]:
-    abundances = openmc.data.NATURAL_ABUNDANCE.get(element)
-    if abundances is None:
-        return []
+class RectangularPrism(CompositeSurface):
+    """Rectangular prism as a composite surface."""
 
-    isotopes: List[tuple[str, float]] = []
-    if isinstance(abundances, dict):
-        items = abundances.items()
+    _surface_names = ("xmin", "xmax", "ymin", "ymax")
+
+    def __init__(self, xmin: float, xmax: float, ymin: float, ymax: float, **kwargs):
+        if xmin >= xmax:
+            raise ValueError("xmin must be less than xmax")
+        if ymin >= ymax:
+            raise ValueError("ymin must be less than ymax")
+
+        self.xmin = openmc.XPlane(x0=xmin, **kwargs)
+        self.xmax = openmc.XPlane(x0=xmax, **kwargs)
+        self.ymin = openmc.YPlane(y0=ymin, **kwargs)
+        self.ymax = openmc.YPlane(y0=ymax, **kwargs)
+
+    def __neg__(self):
+        return -self.xmax & +self.xmin & -self.ymax & +self.ymin
+
+    def __pos__(self):
+        return +self.xmax | -self.xmin | +self.ymax | -self.ymin
+
+
+def sqc(x0: float, y0: float, d: float, **kwargs):
+    """Infinite square prism parallel to z-axis."""
+    return RectangularPrism(x0 - d, x0 + d, y0 - d, y0 + d, **kwargs)
+
+
+def vertical_stack(
+    z_values,
+    universes,
+    x0: float = 0.0,
+    y0: float = 0.0,
+    universe_id: int | None = None,
+):
+    """Create an OpenMC universe that mimics Serpent lattice type 9."""
+    z_planes = [openmc.ZPlane(z) for z in z_values]
+    regions = openmc.model.subdivide(z_planes)
+    cells = [openmc.Cell(region=region) for region in regions]
+
+    # Allow either N universes for N regions or N-1 universes that skip the
+    # region below the first z plane (common Serpent convention).
+    if len(universes) == len(cells):
+        fill_cells = cells
+    elif len(universes) == len(cells) - 1:
+        fill_cells = cells[1:]
     else:
-        items = abundances
-    for key, value in items:
-        if isinstance(key, int):
-            name = f"{element}{key}"
-        else:
-            name = str(key).replace("-", "")
-        isotopes.append((name, float(value)))
-    return isotopes
+        raise ValueError(
+            "Vertical stack expects either N or N-1 universes for N regions."
+        )
+
+    for cell, universe in zip(fill_cells, universes):
+        cell.fill = universe
+        cell.translation = (x0, y0, 0.0)
+
+    return openmc.Universe(universe_id=universe_id, cells=cells)
 
 
-def add_element_expanded(
+def add_natural_element_as_isotopes(
     material: openmc.Material,
     element: str,
     percent: float,
     mode: str,
-    expand: bool,
+    token: str,
+    material_name: str,
 ) -> None:
-    if not expand:
-        material.add_element(element, percent, mode)
-        return
+    if NATURAL_ABUNDANCE is None or Element is None:
+        raise RuntimeError(
+            "Your OpenMC installation does not expose openmc.element APIs "
+            "(Element/NATURAL_ABUNDANCE). "
+            "Please upgrade OpenMC or provide explicit isotopes in the Serpent input."
+        )
 
-    isotopes = iter_natural_isotopes(element)
-    if not isotopes:
-        material.add_element(element, percent, mode)
-        return
+    try:
+        expanded = Element(element).expand(percent, mode)
+    except Exception as exc:
+        raise RuntimeError(
+            "Failed to expand natural-element entry: "
+            f"'{token}' in material '{material_name}'. Original error: {exc}"
+        ) from exc
 
-    if mode == "ao":
-        for name, frac in isotopes:
-            material.add_nuclide(name, percent * frac, mode)
-        return
-
-    masses = [openmc.data.atomic_mass(name) for name, _ in isotopes]
-    weight_sum = sum(frac * mass for (name, frac), mass in zip(isotopes, masses))
-    for (name, frac), mass in zip(isotopes, masses):
-        weight_frac = frac * mass / weight_sum
-        material.add_nuclide(name, percent * weight_frac, mode)
+    for nuclide_name, value, value_mode in expanded:
+        material.add_nuclide(nuclide_name, value, value_mode)
 
 
 def materials_from_ir(
     materials_ir: Dict[str, Dict[str, Any]],
-    expand_natural_elements: bool = True,
 ) -> Dict[str, openmc.Material]:
     """Convert material/mix IR records into OpenMC Material objects."""
     openmc_materials: Dict[str, openmc.Material] = {}
@@ -114,12 +154,13 @@ def materials_from_ir(
                 percent = abs(nuclide["percent"])
                 mode = nuclide["percent_mode"]
                 if nuclide["A"] is None or nuclide["A"] == 0:
-                    add_element_expanded(
+                    add_natural_element_as_isotopes(
                         mat,
                         nuclide["element"],
                         percent,
                         mode,
-                        expand=expand_natural_elements,
+                        nuclide["token"],
+                        name,
                     )
                 else:
                     mat.add_nuclide(nuclide["name"], percent, mode)
@@ -373,6 +414,59 @@ def cells_from_ir(
         cells[name] = cell
 
     return cells, universes, outside_cells
+
+
+def boundary_type_from_settings(
+    settings: Dict[str, Any] | None,
+) -> str | None:
+    """Translate supported Serpent `set bc` values to an OpenMC boundary type.
+
+    Only Serpent boundary condition `1` is handled here, which maps to OpenMC
+    `vacuum`. More advanced boundary-condition modes are left untouched until
+    explicit support is added.
+    """
+    if not settings:
+        return None
+
+    bc_records = settings.get("bc", [])
+    if not bc_records:
+        return None
+
+    values = [str(value) for value in bc_records[-1].get("values", [])]
+    if values and all(value == "1" for value in values):
+        return "vacuum"
+
+    return None
+
+
+def apply_boundary_type_to_outside_cells(
+    outside_cells: Iterable[openmc.Cell],
+    boundary_type: str | None,
+) -> int:
+    """Apply a boundary type to surfaces referenced by Serpent `outside` cells."""
+    if boundary_type is None:
+        return 0
+
+    changed = 0
+    visited: set[int] = set()
+    for cell in outside_cells:
+        if cell.region is None:
+            continue
+        for surface in cell.region.get_surfaces().values():
+            key = id(surface)
+            if key in visited:
+                continue
+            visited.add(key)
+
+            if not hasattr(surface, "boundary_type"):
+                continue
+
+            current = getattr(surface, "boundary_type", None)
+            if current in (None, "transmission"):
+                surface.boundary_type = boundary_type
+                changed += 1
+
+    return changed
 
 
 def get_or_create_universe(
@@ -665,6 +759,161 @@ def apply_rectangular_symmetry(
     return expanded
 
 
+def freeze_name_grid(grid: List[List[str]]) -> tuple[tuple[str, ...], ...]:
+    return tuple(tuple(row) for row in grid)
+
+
+def lattice_maps_from_ir(
+    lattices_ir: Dict[str, Dict[str, Any]],
+    settings: Dict[str, Any] | None = None,
+) -> Dict[str, Dict[str, Any]]:
+    """Preserve Serpent lattice-entry maps for downstream postprocessing."""
+    lattice_maps: Dict[str, Dict[str, Any]] = {}
+    usym_map: Dict[str, Dict[str, Any]] = {}
+    if settings:
+        for record in settings.get("usym", []):
+            universe = record.get("universe")
+            if universe:
+                usym_map[universe] = record
+
+    for name, record in lattices_ir.items():
+        lattice_type = record.get("lat_type_int")
+        if lattice_type is None:
+            lat_type_raw = record.get("lat_type")
+            try:
+                lattice_type = int(lat_type_raw) if lat_type_raw is not None else None
+            except ValueError:
+                lattice_type = None
+        if lattice_type is None:
+            continue
+
+        info: Dict[str, Any] = {
+            "name": name,
+            "lattice_type": lattice_type,
+        }
+
+        if lattice_type in (1, 2, 3, 14):
+            x0 = float(record["x0"])
+            y0 = float(record["y0"])
+            nx = int(record["nx"])
+            ny = int(record["ny"])
+            pitch = float(record["pitch"])
+            entry_names = list(record["entries"])
+            name_grid = build_rectangular_name_grid(entry_names, nx, ny, reverse=False)
+            usym_record = usym_map.get(name)
+            if usym_record and lattice_type == 1:
+                name_grid = apply_rectangular_symmetry(name_grid, usym_record)
+                entry_names = [entry for row in name_grid for entry in row]
+
+            info.update(
+                {
+                    "dimension": (nx, ny),
+                    "origin": (x0, y0),
+                    "pitch": pitch,
+                    "entries": tuple(entry_names),
+                    "serpent_grid": freeze_name_grid(name_grid),
+                }
+            )
+
+            positions: List[Dict[str, Any]] = []
+            if lattice_type in (2, 3):
+                orientation = "x" if lattice_type == 2 else "y"
+                center_row = ny // 2
+                center_col = nx // 2
+                num_rings = (max(nx, ny) + 1) // 2
+                info["orientation"] = orientation
+                for row_idx, row in enumerate(name_grid):
+                    for col_idx, entry_name in enumerate(row):
+                        q, r = rect_to_axial(
+                            row_idx, col_idx, center_row, center_col, orientation
+                        )
+                        if axial_distance(q, r) >= num_rings:
+                            continue
+                        ring_index, within_index = hex_universe_index(
+                            q, r, num_rings, orientation
+                        )
+                        positions.append(
+                            {
+                                "row": row_idx,
+                                "col": col_idx,
+                                "universe": entry_name,
+                                "axial_q": q,
+                                "axial_r": r,
+                                "ring": axial_distance(q, r),
+                                "ring_index": ring_index,
+                                "within_index": within_index,
+                            }
+                        )
+            else:
+                for row_idx, row in enumerate(name_grid):
+                    for col_idx, entry_name in enumerate(row):
+                        positions.append(
+                            {
+                                "row": row_idx,
+                                "col": col_idx,
+                                "universe": entry_name,
+                            }
+                        )
+
+            info["positions"] = tuple(positions)
+            if usym_record and lattice_type == 1:
+                info["symmetry"] = dict(usym_record)
+
+        elif lattice_type in (6, 7, 8):
+            x0 = float(record["x0"])
+            y0 = float(record["y0"])
+            pitch = float(record["pitch"])
+            universe_name = record["entries"][0]
+            info.update(
+                {
+                    "origin": (x0, y0),
+                    "pitch": pitch,
+                    "entries": (universe_name,),
+                    "serpent_grid": ((universe_name,),),
+                    "positions": (
+                        {
+                            "row": 0,
+                            "col": 0,
+                            "universe": universe_name,
+                        },
+                    ),
+                }
+            )
+            if lattice_type in (7, 8):
+                info["orientation"] = "x" if lattice_type == 7 else "y"
+
+        elif lattice_type == 9:
+            x0 = float(record["x0"])
+            y0 = float(record["y0"])
+            z_values = [float(value) for value in record["z_values"]]
+            stack_universes = list(record["stack_universes"])
+            layers: List[Dict[str, Any]] = []
+            for index, universe_name in enumerate(stack_universes):
+                zmin = z_values[index] if index < len(z_values) else None
+                zmax = z_values[index + 1] if index + 1 < len(z_values) else None
+                layers.append(
+                    {
+                        "layer_index": index,
+                        "universe": universe_name,
+                        "zmin": zmin,
+                        "zmax": zmax,
+                    }
+                )
+
+            info.update(
+                {
+                    "origin": (x0, y0),
+                    "z_values": tuple(z_values),
+                    "entries": tuple(stack_universes),
+                    "layers": tuple(layers),
+                }
+            )
+
+        lattice_maps[name] = info
+
+    return lattice_maps
+
+
 def lattices_from_ir(
     lattices_ir: Dict[str, Dict[str, Any]],
     universes: Dict[str, openmc.Universe],
@@ -794,6 +1043,9 @@ def geometry_components_from_ir(
     """Convert geometry IR records into OpenMC objects and lookup maps."""
     surfaces = surfaces_from_ir(geom_ir["surfaces"])
     pins = pins_from_ir(geom_ir["pins"], materials)
+    lattice_maps = lattice_maps_from_ir(
+        geom_ir["lattices"], settings=geom_ir.get("settings")
+    )
 
     universes: Dict[str, openmc.Universe] = dict(pins)
     lattices = lattices_from_ir(
@@ -806,12 +1058,19 @@ def geometry_components_from_ir(
     cells, cell_universes, outside_cells = cells_from_ir(
         geom_ir["cells"], surfaces, materials, fills, universes=universes
     )
+    applied_boundary_type = boundary_type_from_settings(geom_ir.get("settings"))
+    boundary_surfaces_changed = apply_boundary_type_to_outside_cells(
+        outside_cells, applied_boundary_type
+    )
 
     return {
         "surfaces": surfaces,
         "pins": pins,
         "lattices": lattices,
+        "lattice_maps": lattice_maps,
         "cells": cells,
         "universes": cell_universes,
         "outside_cells": outside_cells,
+        "boundary_type": applied_boundary_type,
+        "boundary_surfaces_changed": boundary_surfaces_changed,
     }

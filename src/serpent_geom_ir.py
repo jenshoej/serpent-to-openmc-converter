@@ -239,14 +239,26 @@ def parse_transformation_cards(lines: List[str]) -> List[Dict[str, Any]]:
 def parse_set_cards(lines: List[str]) -> Dict[str, List[Dict[str, Any]]]:
     """Parse Serpent set cards needed for geometry expansion."""
 
-    settings: Dict[str, List[Dict[str, Any]]] = {"usym": []}
+    settings: Dict[str, List[Dict[str, Any]]] = {"usym": [], "bc": []}
     for line in lines:
         words = line.split()
         if not words or first_word(words) != "set":
             continue
         if len(words) < 2:
             continue
-        if words[1].lower() != "usym":
+        setting_name = words[1].lower()
+
+        if setting_name == "bc":
+            if len(words) > 2:
+                settings["bc"].append(
+                    {
+                        "type": "bc",
+                        "values": words[2:],
+                    }
+                )
+            continue
+
+        if setting_name != "usym":
             continue
 
         if len(words) < 3:
