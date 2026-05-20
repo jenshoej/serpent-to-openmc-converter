@@ -18,18 +18,24 @@ Serpent's `src` and `det` cards. The desired OpenMC run settings should be creat
 
 ## How To Use It
 
-The code includes 'four' user functions:
+The code includes four user functions:
 
-- `build_openmc_model()`:
+`build_openmc_model()`
+- returns: model, report
+- The model is *not* a complete OpenMC model. It includes the geometry and materials, and (depending on the Serpent file) other features. This is what the report is for.
+- Use this function by default
 
-- `build_openmc_components()`:
-
-- `summarize_run_settings()`:
-
-- `plot_model()`:
+`build_openmc_components()`
+- returns: materials, geometry, stuff
 
 
-To convert a Serpent input to an OpenMC model, use `build_openmc_model()`
+`summarize_run_settings()`
+- returns: a report containing the run settings from the Serpent file. Can be useful to determine the tallies and run settings for the OpenMC model.
+
+`plot_model()`
+- Optional function to generate plot(s) of the OpenMC model
+
+## Demonstration
 
 ```python
 from pathlib import Path
@@ -94,7 +100,7 @@ include axial `(q, r)` coordinates and ring indices.
 
 ## Logic
 
-The logic is structured as follows:
+The logic of the converter is structured as follows:
 
 Serpent input -> IR layer as Python dicts -> OpenMC equivalent classes
 
