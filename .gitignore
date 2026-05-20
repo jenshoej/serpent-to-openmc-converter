@@ -2,8 +2,5 @@
 __pycache__
 *.egg-info
 SPX_case/*
-!SPX_case/README.md
-!SPX_case/convert_jeff311_ace.py
-!SPX_case/use_jeff311.sh
 ATTENTION_POINTS*
 legacy_stuff/
