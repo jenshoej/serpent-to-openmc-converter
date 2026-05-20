@@ -2,67 +2,41 @@
 
 [![License](https://img.shields.io/badge/license-MIT-green)](https://opensource.org/licenses/MIT)
 
-This repository provides tools for parsing/converting Serpent models to OpenMC
-classes and/or XML files. It is a further development of code from the openmc-dev team, found at https://github.com/openmc-dev/openmc_serpent_adapter.
-
-## What This Produces
+This repository provides a tool for parsing/converting Serpent input files to OpenMC
+classes and/or XML files. It is a continuation of an unfinished version from the openmc-dev team, found at https://github.com/openmc-dev/openmc_serpent_adapter.
 
 Given a Serpent input file, the converter builds an OpenMC geometry/materials
-model from supported cards and can produce:
+model from supported cards (not all cards are supported; see below) and can produce either:
 
-- An in-memory `openmc.Model` object (Python API).
-- A `model.xml` file, written with `openmc.Model.export_to_model_xml(...)`.
-- Optional geometry plot images if you call `plot_model(...)`.
+- An `openmc.Model` Python object.
+- A `model.xml` file, (using `openmc.Model.export_to_model_xml(...)`)
+- An optional geometry plot with `plot_model(...)`.
 
-The converter currently targets material and geometry translation. It does not
-automatically create OpenMC source/tally/settings definitions equivalent to
-Serpent `src`/`det` input. These should be created manually through the Python API before assembling the final OpenMC model.
+The converter supports material and geometry translations, and some run settings like vacuum boundary conditions. It is not a full converter, as it does not create OpenMC source/tally/settings definitions equivalent to
+Serpent's `src` and `det` cards. The desired OpenMC run settings should be created manually (through the Python API) before exporting the final OpenMC model.
+
 
 ## How To Use It
 
-### 1. Get the code first
+The code includes 'four' user functions:
 
-Unlike `pip install numpy`, this project is typically installed from a local
-checkout so you can import it and edit it.
+- `build_openmc_model()`:
 
-Option A (recommended, with git):
+- `build_openmc_components()`:
 
-```bash
-git clone hhttps://github.com/jenshoej/serpent-to-openmc-converter.git
-cd openmc_serpent_adapter
-```
+- `summarize_run_settings()`:
 
-Option B (no git):
+- `plot_model()`:
 
-- Download the repository ZIP from GitHub
-- Extract it
-- `cd` into the extracted `openmc_serpent_adapter` folder (the one containing `pyproject.toml`)
 
-### 2. Install in editable mode (`pip install -e .`)
-
-From the repository root:
-
-```bash
-pip install -e .
-```
-
-What this means:
-
-- `.` means "install the project in this current folder"
-- `-e` means editable install (your local source code is linked into the environment)
-- Edits to the code are picked up without reinstalling each time
-
-This is different from `pip install numpy`, which downloads a published package
-from PyPI and installs a fixed copy.
-
-### 3. Convert and extend in Python
+To convert a Serpent input to an OpenMC model, use `build_openmc_model()`
 
 ```python
 from pathlib import Path
 import openmc
-from src.serpent_to_openmc import build_model
+from src.serpent_to_openmc import build_openmc_model
 
-model, report = build_model(Path("path/to/input"))
+model, report = build_openmc_model(Path("path/to/input"))
 
 # Example: access a preserved Serpent lattice-entry map for assembly-wise
 # postprocessing or benchmark comparisons.
@@ -71,7 +45,7 @@ if core_map is not None:
     print(core_map["dimension"])
     print(core_map["serpent_grid"][0][0])
 
-# Add OpenMC-native features (example: settings/tallies)
+# Add OpenMC-native features (settings, tallies etc.)
 model.settings = openmc.Settings()
 model.settings.batches = 50
 model.settings.inactive = 10
@@ -111,15 +85,12 @@ postprocessing-friendly form. For 2D lattices this includes dimensions, pitch,
 the Serpent-order `serpent_grid`, and per-position records. Hex lattices also
 include axial `(q, r)` coordinates and ring indices.
 
-`build_model(...)` returns:
+`build_openmc_model(...)` returns:
 
 - `model`: base `openmc.Model` with converted geometry/materials attached
 - `report`: `ConversionReport` summarizing counts, root universe, outside cells,
   applied boundary condition, parsed run settings, and preserved Serpent
   lattice maps
-
-`build_openmc_model(...)` is also available if you just want a ready-to-export
-model before adding your own settings/tallies.
 
 ## Logic
 

@@ -160,7 +160,7 @@ def summarize_run_settings(input_path: Path) -> SerpentRunSettings:
     return summarize_run_settings_from_lines(lines)
 
 
-def _build_openmc_components_from_lines(
+def build_openmc_components_from_lines(
     lines: list[str], root_universe: str | None = None
 ) -> tuple[Dict[str, openmc.Material], Dict[str, object], openmc.Universe]:
     therm = parse_therm_cards(lines)
@@ -264,21 +264,15 @@ def select_root_universe(
 
 def build_openmc_model(
     input_path: Path, root_universe: str | None = None
-) -> openmc.Model:
-    model, _ = build_model(input_path, root_universe=root_universe)
-    return model
-
-
-def build_model(
-    input_path: Path, root_universe: str | None = None
 ) -> tuple[openmc.Model, ConversionReport]:
     """Build a base OpenMC model plus a simple conversion report.
 
-    This is the most convenient entry point when you want a ready-to-edit
-    OpenMC model and an at-a-glance summary of what was converted from Serpent.
+    This is the primary user-facing entry point. It returns both the converted
+    OpenMC model and the conversion report so callers can inspect preserved
+    Serpent metadata and conversion notes alongside the model itself.
     """
     lines = load_serpent_lines(input_path)
-    materials, geom_components, root = _build_openmc_components_from_lines(
+    materials, geom_components, root = build_openmc_components_from_lines(
         lines, root_universe=root_universe
     )
     run_settings = summarize_run_settings_from_lines(lines)
@@ -300,7 +294,7 @@ def build_openmc_components(
 ) -> tuple[Dict[str, openmc.Material], Dict[str, object], openmc.Universe]:
     """Return OpenMC materials/geometry objects for manual editing."""
     lines = load_serpent_lines(input_path)
-    return _build_openmc_components_from_lines(lines, root_universe=root_universe)
+    return build_openmc_components_from_lines(lines, root_universe=root_universe)
 
 
 def plot_model(

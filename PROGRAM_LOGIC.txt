@@ -1,0 +1,103 @@
+Serpent to OpenMC: Program Logic Guide
+======================================
+
+Scope
+-----
+This guide explains:
+1. What is implemented in source modules (`src/`).
+2. What a case-level driver script does on top of conversion.
+3. The required steps after conversion to reach a full runnable OpenMC model.
+
+Where natural abundance is implemented
+--------------------------------------
+Natural abundance handling is implemented in source code, not in the case driver script.
+
+Location:
+- `src/ir_openmc.py`
+
+Function:
+- `add_natural_element_as_isotopes(...)`
+
+How it works:
+1. `src/serpent_mat_ir.py` parses Serpent tokens such as `C-nat.06c` and marks them as natural entries (`A=None`).
+2. `src/ir_openmc.py::materials_from_ir(...)` detects these entries.
+3. It calls `add_natural_element_as_isotopes(...)`.
+4. That function delegates to `openmc.element.Element(...).expand(...)` (which uses OpenMC natural-abundance data and library-aware filtering).
+5. Isotopes are added one by one with `material.add_nuclide(...)`:
+   - `ao`: direct abundance scaling
+   - `wo`: abundance*mass normalization then scaling
+6. If `Element/NATURAL_ABUNDANCE` APIs are not available in the installed OpenMC package, conversion raises a clear RuntimeError.
+
+Source code map (conversion responsibilities)
+---------------------------------------------
+1. `src/serpent_preprocess.py`
+   - Preprocesses Serpent input (comments/continuations/tokens).
+2. `src/serpent_mat_ir.py`
+   - Parses Serpent material cards into material IR records.
+   - Marks natural-element entries (`*-nat`) for later expansion.
+3. `src/serpent_geom_ir.py`
+   - Parses geometry/lattice IR from Serpent input.
+4. `src/ir_openmc.py`
+   - Converts material IR -> OpenMC `Material` objects.
+   - Converts geometry IR -> OpenMC surfaces/cells/universes/lattices.
+   - Contains natural-element expansion logic to explicit isotopes.
+5. `src/serpent_to_openmc.py`
+   - Orchestrates parsing + conversion.
+   - `build_openmc_components(...)` returns:
+     - materials dictionary
+     - geometry components
+     - selected root universe
+
+Driver responsibilities (post-conversion workflow)
+--------------------------------------------------
+Case-level driver responsibilities shown by the current demo workflow:
+
+1. Validates `OPENMC_CROSS_SECTIONS` and sets `openmc.config["cross_sections"]` first (so nat expansion uses the same library as runtime).
+2. Calls `build_openmc_components(...)` and creates `openmc.Model`.
+3. Sets vacuum boundary types on outside surfaces when needed.
+4. Resolves finite model bounds for source/tallies/plots.
+5. Creates XY/XZ plot definitions.
+6. Builds tallies:
+   - global power/reaction rates
+   - kinetics IFP-related scores
+   - XY/XZ mesh maps
+   - sampled cell tallies
+7. Builds settings:
+   - eigenvalue run mode
+   - particles/batches/inactive
+   - source box
+   - temperature treatment
+8. Attaches cross sections path to `model.materials.cross_sections`.
+9. Exports `model.xml`.
+10. Plots geometry (in the current demo case this produces `spx_xy.png`, `spx_xz.png`).
+11. Runs OpenMC and reports latest statepoint `keff`.
+
+Checklist: from conversion to full OpenMC model
+------------------------------------------------
+1. Convert Serpent input to OpenMC objects:
+   - materials with explicit isotopes (including nat expansion)
+   - geometry hierarchy with a valid root universe
+2. Ensure boundary conditions are correct (outer vacuum for finite problem).
+3. Ensure finite bounds are available for:
+   - source definition
+   - mesh tallies
+   - plotting widths/origins
+4. Define required tallies.
+5. Define run settings (batches/inactive/particles/source/temperature).
+6. Ensure cross-section library path is valid and readable.
+7. Export final XML (`model.xml`).
+8. Plot geometry for sanity check.
+9. Run OpenMC and validate statepoint output.
+
+Current demo defaults
+---------------------
+- particles: 10000
+- batches: 30
+- inactive: 15
+- threads: 1
+- ifp_n_generation default constant: 8
+
+Current caveat
+--------------
+- `ifp_n_generation` is passed through signatures, but `configure_settings(...)` currently does not set `settings.ifp_n_generation`.
+- A kinetics tally requesting IFP scores is still present.
