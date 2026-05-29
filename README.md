@@ -17,24 +17,24 @@ The desired OpenMC run settings should be created manually (through the Python A
 The code includes four user functions:
 
 `build_openmc_model()`
-- returns: model (OpenMC Class), report (`ConversionReport`)
+- returns: model (OpenMC Model class), report (`ConversionReport`, custom class)
 - The model contains the materials, geometry and supported features of the OpenMC Model.
-- The report serves as a description of what the converted OpenMC model contains.
+- The report provides a description of what the converted OpenMC model contains.
 - This function is the default main converter.
 
 `build_openmc_components()`
-- returns: materials, geometry, stuff
-- Used if the
+- returns: materials, geometry, root universe
+- Gives access to the specific materials and geometry 
 
 `summarize_run_settings()`
-- returns: a report containing the run settings from the Serpent file. Can be useful to determine the tallies and run settings for the OpenMC model.
+- returns: a report containing the run settings from the Serpent file. Useful for choosing similar tallies and run settings for the OpenMC model.
 
 `plot_model()`
-- Optional function to generate plot(s) of the OpenMC model
+- Generates plot(s) of the OpenMC model
 
 ## Demonstration
 
-This code snippet demonstrates using the main converter function `build_openmc_model()`. The returned `report` gives a compact description of what was converted.
+This code snippet demonstrates using the main converter function `build_openmc_model()`. 
 
 ```python
 from pathlib import Path
