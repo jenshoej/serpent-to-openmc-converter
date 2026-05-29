@@ -1,6 +1,7 @@
 
 from __future__ import annotations
 
+import math
 from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any, Dict, Iterable, Tuple
@@ -341,25 +342,63 @@ def build_openmc_components(
     return build_openmc_components_from_lines(lines, root_universe=root_universe)
 
 
+def _default_plot_origin_and_width(
+    model: openmc.Model, basis: str
+) -> tuple[Tuple[float, float, float], Tuple[float, float]]:
+    axis_map = {"xy": (0, 1), "xz": (0, 2), "yz": (1, 2)}
+    if basis not in axis_map:
+        raise ValueError(
+            f"Unsupported plot basis '{basis}'. Expected one of {tuple(axis_map)}."
+        )
+
+    bounding_box = model.geometry.bounding_box
+    lower_left = getattr(bounding_box, "lower_left", None)
+    upper_right = getattr(bounding_box, "upper_right", None)
+    if lower_left is None or upper_right is None:
+        lower_left, upper_right = bounding_box
+
+    centers = [0.0, 0.0, 0.0]
+    widths = [1.0, 1.0, 1.0]
+    for axis in range(3):
+        lower = float(lower_left[axis])
+        upper = float(upper_right[axis])
+        if math.isfinite(lower) and math.isfinite(upper):
+            centers[axis] = 0.5 * (lower + upper)
+            widths[axis] = max(upper - lower, 1.0)
+
+    horizontal_axis, vertical_axis = axis_map[basis]
+    origin = (centers[0], centers[1], centers[2])
+    width = (widths[horizontal_axis], widths[vertical_axis])
+    return origin, width
+
+
 def plot_model(
     model: openmc.Model,
-    basis: str,
-    origin: Tuple[float, float, float],
-    width: Tuple[float, float],
-    pixels: Tuple[int, int],
-    color_by: str,
-    filename: str,
-    output_dir: Path,
-    openmc_exec: str,
+    basis: str = "xy",
+    origin: Tuple[float, float, float] | None = None,
+    width: Tuple[float, float] | None = None,
+    pixels: Tuple[int, int] = (1000, 1000),
+    color_by: str = "material",
+    filename: str = "plot",
+    output_dir: Path = Path("."),
+    openmc_exec: str = "openmc",
 ) -> None:
+    """Generate a simple plot for an OpenMC model.
+
+    When `origin` or `width` are omitted, they are inferred from the model
+    geometry bounding box for the requested basis.
+    """
+    default_origin, default_width = _default_plot_origin_and_width(model, basis)
+
     plot = openmc.Plot()
     plot.basis = basis
-    plot.origin = origin
-    plot.width = width
+    plot.origin = default_origin if origin is None else origin
+    plot.width = default_width if width is None else width
     plot.pixels = pixels
     plot.color_by = color_by
     plot.filename = filename
     model.plots = openmc.Plots([plot])
+    output_dir.mkdir(parents=True, exist_ok=True)
 
     model.plot_geometry(
         cwd=output_dir,
