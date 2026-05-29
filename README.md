@@ -5,9 +5,7 @@
 This repository provides a Python tool for parsing/converting Serpent input files to OpenMC. It is a continuation of an unfinished version from the openmc-dev team  (https://github.com/openmc-dev/openmc_serpent_adapter).
 
 Given a Serpent input file, the converter builds an OpenMC
-model containing the geometry and materials from supported cards (not all cards are supported; see below).
-
-The main function translates the bulk of the Serpent input through geometry and materials and a handful of other featured cards (supported cards are described later).
+model containing the geometry, materials and a handful of other features from supported cards (not all cards are supported; see below).
 
 In other words, it is not a complete converter translating every Serpent input card, like more run-specific `src` and `det` cards.
 
