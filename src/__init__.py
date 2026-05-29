@@ -7,6 +7,7 @@ from .serpent_to_openmc import (
     build_openmc_model,
     build_openmc_components,
     build_conversion_report,
+    plot_model,
     summarize_run_settings,
 )
 
@@ -16,5 +17,6 @@ __all__ = [
     "build_openmc_model",
     "build_openmc_components",
     "build_conversion_report",
+    "plot_model",
     "summarize_run_settings",
 ]

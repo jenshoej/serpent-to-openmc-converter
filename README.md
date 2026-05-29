@@ -1,19 +1,17 @@
-# Serpent Conversion Tools for OpenMC
+# Serpent to OpenMC
 
 [![License](https://img.shields.io/badge/license-MIT-green)](https://opensource.org/licenses/MIT)
 
-This repository provides a tool for parsing/converting Serpent input files to OpenMC
-classes and/or XML files. It is a continuation of an unfinished version from the openmc-dev team, found at https://github.com/openmc-dev/openmc_serpent_adapter.
+This repository provides a Python tool for parsing/converting Serpent input files to OpenMC. It is a continuation of an unfinished version from the openmc-dev team  (https://github.com/openmc-dev/openmc_serpent_adapter).
 
-Given a Serpent input file, the converter builds an OpenMC geometry/materials
-model from supported cards (not all cards are supported; see below) and can produce either:
+Given a Serpent input file, the converter builds an OpenMC
+model containing the geometry and materials from supported cards (not all cards are supported; see below).
 
-- An `openmc.Model` Python object.
-- A `model.xml` file, (using `openmc.Model.export_to_model_xml(...)`)
-- An optional geometry plot with `plot_model(...)`.
+The main function translates the bulk of the Serpent input through geometry and materials and a handful of other featured cards (supported cards are described later).
 
-The converter supports material and geometry translations, and some run settings like vacuum boundary conditions. It is not a full converter, as it does not create OpenMC source/tally/settings definitions equivalent to
-Serpent's `src` and `det` cards. The desired OpenMC run settings should be created manually (through the Python API) before exporting the final OpenMC model.
+In other words, it is not a complete converter translating every Serpent input card, like more run-specific `src` and `det` cards.
+
+The desired OpenMC run settings should be created manually (through the Python API) after the converting the Serpent input, before exporting and running the final OpenMC model.
 
 
 ## How To Use It
@@ -21,13 +19,14 @@ Serpent's `src` and `det` cards. The desired OpenMC run settings should be creat
 The code includes four user functions:
 
 `build_openmc_model()`
-- returns: model, report
-- The model is *not* a complete OpenMC model. It includes the geometry and materials, and (depending on the Serpent file) other features. This is what the report is for.
-- Use this function by default
+- returns: model (OpenMC Class), report (`ConversionReport`)
+- The model contains the materials, geometry and supported features of the OpenMC Model.
+- The report serves as a description of what the converted OpenMC model contains.
+- This function is the default main converter.
 
 `build_openmc_components()`
 - returns: materials, geometry, stuff
-
+- Used if the
 
 `summarize_run_settings()`
 - returns: a report containing the run settings from the Serpent file. Can be useful to determine the tallies and run settings for the OpenMC model.
@@ -37,21 +36,23 @@ The code includes four user functions:
 
 ## Demonstration
 
+This code snippet demonstrates using the main converter function `build_openmc_model()`. The returned `report` gives a compact description of what was converted.
+
 ```python
 from pathlib import Path
 import openmc
 from src.serpent_to_openmc import build_openmc_model
 
-model, report = build_openmc_model(Path("path/to/input"))
+# Run build_openmc_model
+model, report = build_openmc_model(Path("path/to/Serpent_input"))
 
-# Example: access a preserved Serpent lattice-entry map for assembly-wise
-# postprocessing or benchmark comparisons.
-core_map = report.lattice_maps.get("l_core")
-if core_map is not None:
-    print(core_map["dimension"])
-    print(core_map["serpent_grid"][0][0])
+# Inspect what the conversion produced
+print(report)
+print(report.describe())
+print(report.to_dict())
+print(report.run_settings)
 
-# Add OpenMC-native features (settings, tallies etc.)
+# Add desired OpenMC features (settings, tallies etc.)
 model.settings = openmc.Settings()
 model.settings.batches = 50
 model.settings.inactive = 10
@@ -65,11 +66,11 @@ model.tallies = openmc.Tallies([tally])
 model.export_to_model_xml(path="model.xml")
 ```
 
-If you prefer direct access to the converted geometry pieces, `build_openmc_components(...)`
-is still available and returns materials, geometry-component lookup maps, and the
+If you prefer direct access to the converted geometry, `build_openmc_components()`
+can be used to return materials, geometry-component lookup maps, and the
 selected root universe.
 
-To inspect run-relevant Serpent `set` cards without applying them automatically:
+Serpent `set` cards are not converted automatically (except a few ones like vacuum boundaries). `summarize_run_settings()` can be used to inspect the Serpent settings if needed in the OpenMC model.
 
 ```python
 from pathlib import Path
@@ -77,6 +78,12 @@ from src.serpent_to_openmc import summarize_run_settings
 
 settings = summarize_run_settings(Path("path/to/input"))
 print(settings.particles, settings.inactive_generations, settings.seed)
+
+# A core map can be viewed from the report with
+core_map = report.lattice_maps.get("l_core")
+if core_map is not None:
+    print(core_map["dimension"])
+    print(core_map["serpent_grid"][0][0])
 ```
 
 `build_openmc_components(...)` returns:
@@ -93,10 +100,17 @@ include axial `(q, r)` coordinates and ring indices.
 
 `build_openmc_model(...)` returns:
 
-- `model`: base `openmc.Model` with converted geometry/materials attached
+- `model`: base `openmc.Model` with converted geometry/materials
 - `report`: `ConversionReport` summarizing counts, root universe, outside cells,
   applied boundary condition, parsed run settings, and preserved Serpent
   lattice maps
+
+To describe the converted model after calling `build_openmc_model(...)`, use the returned `report`:
+
+- `print(report)` or `print(report.describe())` for a human-readable summary
+- `report.to_dict()` for a structured dictionary view
+- `report.run_settings` for the parsed Serpent `set` cards
+- `report.lattice_maps` for preserved Serpent lattice-entry metadata
 
 ## Logic
 

@@ -69,6 +69,50 @@ class ConversionReport:
     lattice_maps: dict[str, dict[str, Any]] = field(default_factory=dict)
     notes: tuple[str, ...] = ()
 
+    def describe(self) -> str:
+        """Return a human-readable summary of the converted OpenMC model."""
+        lines = [
+            f"Input file: {self.input_path}",
+            f"Root universe: {self.root_universe_name or 'None'}",
+            (
+                "Contents: "
+                f"{self.material_count} materials, "
+                f"{self.surface_count} surfaces, "
+                f"{self.cell_count} cells, "
+                f"{self.universe_count} universes, "
+                f"{self.lattice_count} lattices, "
+                f"{self.pin_count} pins"
+            ),
+        ]
+
+        if self.applied_boundary_type is not None:
+            lines.append(
+                "Boundary handling: "
+                f"{self.applied_boundary_type} "
+                f"({self.boundary_surfaces_changed} surfaces changed)"
+            )
+
+        if self.outside_cell_names:
+            lines.append("Outside cells: " + ", ".join(self.outside_cell_names))
+
+        if self.run_settings.raw_set_cards:
+            lines.append("Run settings summary: available in report.run_settings")
+
+        if self.lattice_maps:
+            lines.append(
+                "Lattice maps: available in report.lattice_maps "
+                f"({len(self.lattice_maps)} entries)"
+            )
+
+        if self.notes:
+            lines.append("Notes:")
+            lines.extend(f"- {note}" for note in self.notes)
+
+        return "\n".join(lines)
+
+    def __str__(self) -> str:
+        return self.describe()
+
     def to_dict(self) -> dict[str, Any]:
         return {
             "input_path": str(self.input_path),
